@@ -80,7 +80,7 @@ export function ImpactStats() {
             Measured excellence, national scale
           </h2>
         </div>
-        <div className="mt-14 grid grid-cols-2 gap-y-12 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat) => (
             <StatItem key={stat.label} stat={stat} run={run} />
           ))}

@@ -8,6 +8,16 @@ export const metadata: Metadata = {
     'EHP Academy solutions: Government Excellence, Military Protocol, Executive Presence, Customer Experience, Hospitality Excellence, Corporate Service Culture, and International Protocol.',
 }
 
+const solutionImages: Record<string, string> = {
+  'government-excellence': '/images/about-leadership.png',
+  'military-protocol': '/images/ceremony.png',
+  'executive-presence': '/images/executive-presence.png',
+  'customer-experience': '/images/about-leadership.png',
+  'hospitality-excellence': '/images/hospitality.png',
+  'corporate-service-culture': '/images/hospitality.png',
+  'international-protocol': '/images/ceremony.png',
+}
+
 type Solution = {
   id: string
   number: string
@@ -161,6 +171,13 @@ export default function SolutionsPage() {
                   <p className="mt-2 text-base font-medium text-primary">
                     {solution.outcome}
                   </p>
+                </div>
+                <div className="mt-8 overflow-hidden border border-border">
+                  <img
+                    src={solutionImages[solution.id] ?? '/images/about-leadership.png'}
+                    alt={solution.title}
+                    className="w-full aspect-[16/9] object-cover opacity-80"
+                  />
                 </div>
               </div>
               <div className="reveal lg:col-span-6 lg:col-start-7">

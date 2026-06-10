@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Building2, BookOpen, User, CalendarCheck } from 'lucide-react'
 import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitives'
 import { ContactForm } from '@/components/contact/contact-form'
 
@@ -12,18 +13,22 @@ const enquiryTypes = [
   {
     label: 'Institutional Partnership',
     body: 'For ministries, commands, and large authorities seeking a strategic development mandate.',
+    Icon: Building2,
   },
   {
     label: 'Programme Enquiry',
     body: 'For specific programme delivery — on-site, residential, or bespoke pathway.',
+    Icon: BookOpen,
   },
   {
     label: 'Executive Coaching',
     body: 'For individual senior leaders seeking protocol and executive presence development.',
+    Icon: User,
   },
   {
     label: 'Event Protocol',
     body: 'For ceremonies, state visits, summits, and formal events requiring protocol support.',
+    Icon: CalendarCheck,
   },
 ]
 
@@ -48,16 +53,19 @@ export default function ContactPage() {
               intro="EHP engagements take four forms. Understanding your need allows us to bring the right advisors to the conversation from the first meeting."
             />
           </div>
-          <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden border border-border bg-border grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {enquiryTypes.map((type, i) => (
               <div
                 key={type.label}
-                className="reveal flex flex-col gap-4 bg-card p-8"
+                className="reveal flex flex-col gap-5 bg-card p-8"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
-                <span className="font-mono text-xs text-gold">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
+                <div className="flex items-center justify-between">
+                  <type.Icon className="size-5 text-gold" strokeWidth={1.5} />
+                  <span className="font-mono text-xs text-muted-foreground/50">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
                 <h3 className="font-heading text-xl font-medium text-primary">
                   {type.label}
                 </h3>

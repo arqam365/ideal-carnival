@@ -16,6 +16,15 @@ type Faculty = {
   credentials: string[]
 }
 
+const facultyImages = [
+  '/images/faculty-1.png',
+  '/images/faculty-2.png',
+  '/images/faculty-3.png',
+  '/images/faculty-1.png',
+  '/images/faculty-2.png',
+  '/images/faculty-3.png',
+]
+
 const faculty: Faculty[] = [
   {
     name: 'Dr. Noura Al-Harbi',
@@ -155,6 +164,13 @@ export default function FacultyPage() {
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
                 <div className="lg:col-span-4">
+                  <div className="mb-6 aspect-[4/3] overflow-hidden bg-accent">
+                    <img
+                      src={facultyImages[i]}
+                      alt={member.name}
+                      className="size-full object-cover object-top grayscale"
+                    />
+                  </div>
                   <div className="mb-4 h-px w-10 bg-gold" aria-hidden="true" />
                   <h3 className="font-heading text-2xl font-medium text-primary">
                     {member.name}

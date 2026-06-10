@@ -1,12 +1,12 @@
 import { Eyebrow } from '@/components/section-primitives'
 
 const partners = [
-  'International Protocol Council',
-  'École Hôtelière Alliance',
-  'Global Hospitality Institute',
-  'Diplomatic Standards Board',
-  'Royal Service Guild',
-  'Aviation Excellence Network',
+  { name: 'International Protocol Council', abbr: 'IPC' },
+  { name: 'École Hôtelière Alliance', abbr: 'EHA' },
+  { name: 'Global Hospitality Institute', abbr: 'GHI' },
+  { name: 'Diplomatic Standards Board', abbr: 'DSB' },
+  { name: 'Royal Service Guild', abbr: 'RSG' },
+  { name: 'Aviation Excellence Network', abbr: 'AEN' },
 ]
 
 export function PartnersStrip() {
@@ -23,10 +23,15 @@ export function PartnersStrip() {
         <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
           {partners.map((partner) => (
             <div
-              key={partner}
-              className="flex min-h-[6rem] items-center justify-center bg-background px-4 py-6 text-center text-xs font-medium uppercase tracking-luxury text-muted-foreground"
+              key={partner.name}
+              className="flex min-h-[7rem] flex-col items-center justify-center gap-2 bg-background px-4 py-6 text-center transition-colors hover:bg-accent"
             >
-              {partner}
+              <span className="font-heading text-2xl font-medium text-gold/60">
+                {partner.abbr}
+              </span>
+              <span className="text-[0.6rem] font-medium uppercase tracking-luxury text-muted-foreground">
+                {partner.name}
+              </span>
             </div>
           ))}
         </div>

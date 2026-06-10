@@ -1,14 +1,13 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
-/**
- * Subtle, premium scroll reveal. Adds `.is-visible` to any element
- * with the `.reveal` class as it enters the viewport. No bounce, no spin.
- */
 export function Reveal() {
+  const pathname = usePathname()
+
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
+    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)'))
 
     if (typeof IntersectionObserver === 'undefined') {
       els.forEach((el) => el.classList.add('is-visible'))
@@ -24,13 +23,13 @@ export function Reveal() {
           }
         })
       },
-      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' },
+      { threshold: 0.08, rootMargin: '0px 0px -4% 0px' },
     )
 
     els.forEach((el) => observer.observe(el))
 
     return () => observer.disconnect()
-  })
+  }, [pathname])
 
   return null
 }

@@ -10,6 +10,15 @@ export const metadata: Metadata = {
     'Thought leadership from EHP Academy on protocol, hospitality excellence, executive presence, and service leadership — for government, defense, hospitality, and corporate institutions.',
 }
 
+const categoryImages: Record<string, string> = {
+  'Diplomatic Protocol': '/images/ceremony.png',
+  'Government Excellence': '/images/about-leadership.png',
+  'Executive Presence': '/images/executive-presence.png',
+  'Military Protocol': '/images/hero-protocol.png',
+  'Hospitality Excellence': '/images/hospitality.png',
+  'VIP Relations': '/images/hospitality.png',
+}
+
 type Article = {
   slug: string
   category: string
@@ -144,9 +153,9 @@ export default function InsightsPage() {
               </div>
               <div className="hidden overflow-hidden border border-gold/20 lg:col-span-5 lg:block">
                 <img
-                  src="/images/ceremony.png"
+                  src="/images/insights-feature.png"
                   alt="Protocol and soft power"
-                  className="size-full object-cover opacity-60"
+                  className="size-full object-cover opacity-70"
                 />
               </div>
             </div>
@@ -168,25 +177,33 @@ export default function InsightsPage() {
             {rest.map((article, i) => (
               <article
                 key={article.slug}
-                className="reveal flex flex-col bg-card p-8"
+                className="reveal flex flex-col bg-card"
                 style={{ transitionDelay: `${(i % 3) * 60}ms` }}
               >
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="text-[0.65rem] font-semibold uppercase tracking-luxury text-gold">
+                <div className="relative aspect-[16/9] overflow-hidden bg-accent">
+                  <img
+                    src={categoryImages[article.category] ?? '/images/about-leadership.png'}
+                    alt={article.title}
+                    className="size-full object-cover opacity-80 transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" aria-hidden="true" />
+                  <span className="absolute bottom-4 left-4 text-[0.65rem] font-semibold uppercase tracking-luxury text-gold">
                     {article.category}
                   </span>
                 </div>
-                <h3 className="font-heading text-xl font-medium text-primary leading-[1.25] flex-1">
-                  {article.title}
-                </h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
-                  {article.excerpt}
-                </p>
-                <div className="mt-6 flex items-center justify-between border-t border-border pt-5">
-                  <div className="flex items-center gap-3 text-xs uppercase tracking-luxury text-muted-foreground/70">
-                    <span>{article.date}</span>
-                    <span aria-hidden="true">·</span>
-                    <span>{article.readTime}</span>
+                <div className="flex flex-1 flex-col p-8">
+                  <h3 className="font-heading text-xl font-medium text-primary leading-[1.25] flex-1">
+                    {article.title}
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    {article.excerpt}
+                  </p>
+                  <div className="mt-6 flex items-center justify-between border-t border-border pt-5">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-luxury text-muted-foreground/70">
+                      <span>{article.date}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{article.readTime}</span>
+                    </div>
                   </div>
                 </div>
               </article>
@@ -201,14 +218,23 @@ export default function InsightsPage() {
           <div className="reveal mb-10">
             <Eyebrow>Topics We Cover</Eyebrow>
           </div>
-          <div className="flex flex-wrap gap-3">
+          <div className="grid gap-px overflow-hidden border border-border bg-border grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
             {categories.slice(1).map((cat) => (
-              <span
+              <div
                 key={cat}
-                className="border border-border bg-card px-5 py-2.5 text-sm font-medium text-primary"
+                className="reveal flex flex-col gap-3 bg-card p-5"
               >
-                {cat}
-              </span>
+                <div className="aspect-[4/3] overflow-hidden bg-accent">
+                  <img
+                    src={categoryImages[cat] ?? '/images/about-leadership.png'}
+                    alt={cat}
+                    className="size-full object-cover opacity-60"
+                  />
+                </div>
+                <span className="text-[0.65rem] font-semibold uppercase tracking-luxury text-primary leading-tight">
+                  {cat}
+                </span>
+              </div>
             ))}
           </div>
         </div>

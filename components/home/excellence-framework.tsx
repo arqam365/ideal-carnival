@@ -40,7 +40,7 @@ export function ExcellenceFramework() {
         />
 
         <div className="mt-16">
-          <div className="grid gap-px overflow-hidden border border-sand bg-sand md:grid-cols-5">
+          <div className="grid gap-px overflow-hidden border border-sand bg-sand grid-cols-1 sm:grid-cols-2 md:grid-cols-5">
             {pillars.map((p, i) => (
               <div
                 key={p.title}

@@ -77,13 +77,20 @@ export default function AboutPage() {
       {/* Story */}
       <section className="bg-background py-24 lg:py-32">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-12 lg:px-10">
-          <div className="reveal lg:col-span-5">
+          <div className="reveal space-y-10 lg:col-span-5">
             <SectionHeading
               eyebrow="Our Story"
               title="Founded to professionalize service at a national level"
             />
+            <div className="overflow-hidden border border-border">
+              <img
+                src="/images/about-leadership.png"
+                alt="EHP Academy leadership"
+                className="w-full object-cover aspect-[4/3]"
+              />
+            </div>
           </div>
-          <div className="reveal space-y-6 text-base leading-relaxed text-muted-foreground lg:col-span-7">
+          <div className="reveal space-y-6 text-base leading-relaxed text-muted-foreground lg:col-span-7 lg:pt-4">
             <p>
               EHP Academy was established with a singular conviction: that the
               way a nation welcomes, hosts, and represents itself is a strategic
@@ -102,6 +109,19 @@ export default function AboutPage() {
               The result is a generation of Saudi professionals who carry
               themselves, and the Kingdom, with quiet confidence on any stage.
             </p>
+            <div className="grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
+              {[
+                { value: '240+', label: 'Institutions Served' },
+                { value: '18,500+', label: 'Professionals Developed' },
+                { value: '10', label: 'Industries' },
+                { value: '24', label: 'Countries' },
+              ].map((stat) => (
+                <div key={stat.label} className="bg-card px-6 py-5">
+                  <span className="block font-heading text-3xl font-medium text-primary">{stat.value}</span>
+                  <span className="mt-1 block text-[0.68rem] uppercase tracking-luxury text-muted-foreground">{stat.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

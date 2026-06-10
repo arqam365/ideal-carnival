@@ -42,39 +42,52 @@ export default function ProgramsPage() {
               title="Designed to fit your institution"
             />
           </div>
-          <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden border border-border bg-border grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 mode: 'On-site',
                 desc: 'Delivered at your institution by EHP faculty — fully customised to your environment, culture, and team.',
+                image: '/images/about-leadership.png',
               },
               {
                 mode: 'Residential',
                 desc: 'Immersive multi-day programmes at our Riyadh facility, combining deep learning with peer interaction.',
+                image: '/images/hospitality.png',
               },
               {
                 mode: 'Workshop',
                 desc: 'Focused half-day or full-day interventions targeting a specific skill, behaviour, or capability area.',
+                image: '/images/ceremony.png',
               },
               {
                 mode: 'Bespoke Pathway',
                 desc: "A fully custom programme sequence designed around your organisation's mandate, culture, and ambition.",
+                image: '/images/executive-presence.png',
               },
             ].map((item, i) => (
               <div
                 key={item.mode}
-                className="reveal flex flex-col gap-4 bg-background p-8"
+                className="reveal flex flex-col bg-background"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
-                <span className="font-mono text-xs text-gold">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="font-heading text-xl font-medium text-primary">
-                  {item.mode}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {item.desc}
-                </p>
+                <div className="aspect-[16/9] overflow-hidden bg-accent">
+                  <img
+                    src={item.image}
+                    alt={item.mode}
+                    className="size-full object-cover opacity-70"
+                  />
+                </div>
+                <div className="flex flex-col gap-4 p-8">
+                  <span className="font-mono text-xs text-gold">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <h3 className="font-heading text-xl font-medium text-primary">
+                    {item.mode}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

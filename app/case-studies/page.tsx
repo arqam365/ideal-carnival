@@ -24,6 +24,12 @@ type CaseStudy = {
   impact: string
 }
 
+const sectorImages: Record<string, string> = {
+  Government: '/images/about-leadership.png',
+  Hospitality: '/images/hospitality.png',
+  Defense: '/images/ceremony.png',
+}
+
 const caseStudies: CaseStudy[] = [
   {
     id: 'ministry-protocol-transformation',
@@ -129,22 +135,36 @@ export default function CaseStudiesPage() {
                 className="reveal group block overflow-hidden border border-border bg-card transition-colors hover:border-primary"
                 style={{ transitionDelay: `${i * 60}ms` }}
               >
-                <div className="grid gap-4 p-8 lg:grid-cols-12 lg:gap-8 lg:p-10">
-                  <div className="lg:col-span-2">
-                    <span className="text-[0.68rem] font-semibold uppercase tracking-luxury text-gold">
+                <div className="grid gap-0 lg:grid-cols-12">
+                  <div className="relative hidden overflow-hidden lg:col-span-3 lg:block">
+                    <img
+                      src={sectorImages[cs.sector] ?? '/images/about-leadership.png'}
+                      alt={cs.sector}
+                      className="size-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-primary/50" aria-hidden="true" />
+                    <span className="absolute bottom-4 left-4 text-[0.65rem] font-semibold uppercase tracking-luxury text-gold">
                       {cs.sector}
                     </span>
-                    <p className="mt-2 text-xs uppercase tracking-luxury text-muted-foreground">
-                      {cs.institution}
+                  </div>
+                  <div className="grid gap-4 p-8 lg:col-span-9 lg:gap-8 lg:p-10">
+                    <div>
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-luxury text-gold lg:hidden">
+                        {cs.sector} ·{' '}
+                      </span>
+                      <span className="text-[0.68rem] font-semibold uppercase tracking-luxury text-muted-foreground">
+                        {cs.institution}
+                      </span>
+                    </div>
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-heading text-xl font-medium text-primary transition-colors group-hover:text-primary lg:text-2xl">
+                        {cs.headline}
+                      </h3>
+                      <ArrowRight className="mt-1 size-5 shrink-0 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-gold" />
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                      {cs.challenge}
                     </p>
-                  </div>
-                  <div className="flex items-center lg:col-span-9">
-                    <h3 className="font-heading text-xl font-medium text-primary transition-colors group-hover:text-primary lg:text-2xl">
-                      {cs.headline}
-                    </h3>
-                  </div>
-                  <div className="flex items-center justify-end lg:col-span-1">
-                    <ArrowRight className="size-5 text-muted-foreground transition-all group-hover:translate-x-1 group-hover:text-gold" />
                   </div>
                 </div>
               </a>
