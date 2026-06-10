@@ -69,35 +69,35 @@ export function ProtocolInPractice() {
   const stage = stages[active]
 
   return (
-    <section className="bg-primary py-24 lg:py-32">
+    <section className="overflow-x-hidden bg-primary py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <SectionHeading
           light
           eyebrow="A Signature Experience"
           title="Protocol in Practice"
-          intro="Excellence is not a single moment \u2014 it is a continuum. Follow a VIP engagement through six defining stages, and see how protocol shapes every interaction."
+          intro="Excellence is not a single moment — it is a continuum. Follow a VIP engagement through six defining stages, and see how protocol shapes every interaction."
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-12">
           {/* Stage rail */}
           <div className="lg:col-span-4">
-            <ol className="flex gap-2 overflow-x-auto pb-2 lg:flex-col lg:gap-0 lg:overflow-visible lg:pb-0">
+            <ol className="grid grid-cols-3 lg:flex lg:flex-col lg:gap-0">
               {stages.map((s, i) => (
-                <li key={s.key} className="shrink-0 lg:shrink">
+                <li key={s.key}>
                   <button
                     type="button"
                     onClick={() => setActive(i)}
                     className={cn(
-                      'group flex w-full items-center gap-4 border-b border-gold/15 px-4 py-4 text-left transition-colors lg:px-0',
+                      'group flex w-full flex-col gap-1 border-b border-gold/15 px-2 py-3 text-left transition-colors lg:flex-row lg:items-center lg:gap-3 lg:px-0 lg:py-4',
                       active === i
                         ? 'text-gold'
                         : 'text-primary-foreground/55 hover:text-primary-foreground',
                     )}
                   >
-                    <span className="font-mono text-xs">
+                    <span className="font-mono text-[0.65rem] shrink-0">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <span className="font-heading text-xl">{s.label}</span>
+                    <span className="font-heading text-base lg:text-xl">{s.label}</span>
                   </button>
                 </li>
               ))}

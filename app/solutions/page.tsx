@@ -141,7 +141,7 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Strategic capabilities for institutions that represent the Kingdom"
-        intro="We engage with ministries, commands, authorities, and enterprises as a partner in excellence \u2014 not a vendor of courses. Each solution is a capability area, tailored to your mandate."
+        intro="We engage with ministries, commands, authorities, and enterprises as a partner in excellence — not a vendor of courses. Each solution is a capability area, tailored to your mandate."
         image="/images/ceremony.png"
         imageAlt="Formal Saudi state ceremony"
       />

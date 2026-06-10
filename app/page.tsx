@@ -9,6 +9,7 @@ import { VisionBand } from '@/components/home/vision-band'
 import { HomeIndustries } from '@/components/home/home-industries'
 import { ImpactStats } from '@/components/home/impact-stats'
 import { ConsultationCTA } from '@/components/consultation-cta'
+import { Reveal } from '@/components/reveal'
 
 export const metadata: Metadata = {
   description:
@@ -40,15 +41,15 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <HomeHero />
-      <TrustBar />
-      <PartnersStrip />
-      <HomeSolutions />
-      <ProtocolInPractice />
-      <ExcellenceFramework />
-      <VisionBand />
-      <HomeIndustries />
-      <ImpactStats />
-      <ConsultationCTA />
+      <Reveal><TrustBar /></Reveal>
+      <Reveal><PartnersStrip /></Reveal>
+      <Reveal><HomeSolutions /></Reveal>
+      <Reveal><ProtocolInPractice /></Reveal>
+      <Reveal><ExcellenceFramework /></Reveal>
+      <Reveal><VisionBand /></Reveal>
+      <Reveal><HomeIndustries /></Reveal>
+      <Reveal><ImpactStats /></Reveal>
+      <Reveal><ConsultationCTA /></Reveal>
     </main>
   )
 }

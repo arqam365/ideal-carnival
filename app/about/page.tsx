@@ -5,7 +5,7 @@ import { ConsultationCTA } from '@/components/consultation-cta'
 export const metadata: Metadata = {
   title: 'About EHP Academy',
   description:
-    'The story, vision, mission, and leadership philosophy of EHP Academy \u2014 the House of Etiquette, Hospitality & Protocol, advancing Saudi service excellence in alignment with Vision 2030.',
+    'The story, vision, mission, and leadership philosophy of EHP Academy — the House of Etiquette, Hospitality & Protocol, advancing Saudi service excellence in alignment with Vision 2030.',
 }
 
 const values = [
@@ -27,7 +27,7 @@ const values = [
   },
   {
     title: 'Excellence',
-    body: 'We benchmark against the finest institutions in the world \u2014 and aim higher.',
+    body: 'We benchmark against the finest institutions in the world — and aim higher.',
   },
   {
     title: 'Stewardship',
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About the Institution"
         title="An institution built to elevate how Saudi Arabia serves and leads"
-        intro="EHP Academy is not a course marketplace. We are a house of excellence \u2014 developing the conduct, hospitality, and protocol competency that defines world-class representation."
+        intro="EHP Academy is not a course marketplace. We are a house of excellence — developing the conduct, hospitality, and protocol competency that defines world-class representation."
         image="/images/about-leadership.png"
         imageAlt="Executive leadership meeting at EHP Academy"
       />
@@ -140,7 +140,7 @@ export default function AboutPage() {
             <Eyebrow light>Mission</Eyebrow>
             <p className="mt-6 font-heading text-2xl leading-snug text-primary-foreground lg:text-3xl">
               To develop Saudi professionals whose conduct meets global
-              standards while honoring Saudi values \u2014 in every interaction,
+              standards while honoring Saudi values — in every interaction,
               at every level.
             </p>
           </div>
@@ -217,7 +217,7 @@ export default function AboutPage() {
               and proven in the moments that matter most.
             </p>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-primary-foreground/70">
-              Our faculty are practitioners \u2014 protocol officers,
+              Our faculty are practitioners — protocol officers,
               hospitality leaders, and diplomats who have operated at the
               highest levels. They teach not theory, but mastery earned in
               service to nations and institutions.

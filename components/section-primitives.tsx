@@ -1,5 +1,9 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
+import { gsap } from 'gsap'
 
 export function Eyebrow({
   children,
@@ -90,9 +94,31 @@ export function PageHero({
   image: string
   imageAlt: string
 }) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const imageRef = useRef<HTMLImageElement>(null)
+  const eyebrowRef = useRef<HTMLSpanElement>(null)
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const bodyRef = useRef<HTMLParagraphElement>(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.timeline({ defaults: { ease: 'power3.out' } })
+        .fromTo(imageRef.current, { scale: 1.06 }, { scale: 1, duration: 1.6 })
+        .fromTo(
+          [eyebrowRef.current, headingRef.current, bodyRef.current],
+          { opacity: 0, y: 24 },
+          { opacity: 1, y: 0, duration: 0.85, stagger: 0.12 },
+          '-=1.1',
+        )
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
+
   return (
-    <section className="relative isolate overflow-hidden bg-primary pt-20">
+    <section ref={sectionRef} className="relative isolate overflow-hidden bg-primary pt-20">
       <img
+        ref={imageRef}
         src={image || '/placeholder.svg'}
         alt={imageAlt}
         className="absolute inset-0 -z-10 size-full object-cover opacity-30"
@@ -102,12 +128,22 @@ export function PageHero({
         aria-hidden="true"
       />
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
-        <div className="max-w-3xl reveal">
-          <Eyebrow light>{eyebrow}</Eyebrow>
-          <h1 className="mt-6 text-balance font-heading text-4xl font-medium leading-[1.08] text-primary-foreground sm:text-5xl lg:text-6xl">
+        <div className="max-w-3xl">
+          <span ref={eyebrowRef} style={{ opacity: 0 }}>
+            <Eyebrow light>{eyebrow}</Eyebrow>
+          </span>
+          <h1
+            ref={headingRef}
+            style={{ opacity: 0 }}
+            className="mt-6 text-balance font-heading text-4xl font-medium leading-[1.08] text-primary-foreground sm:text-5xl lg:text-6xl"
+          >
             {title}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-primary-foreground/70">
+          <p
+            ref={bodyRef}
+            style={{ opacity: 0 }}
+            className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-primary-foreground/70"
+          >
             {intro}
           </p>
         </div>

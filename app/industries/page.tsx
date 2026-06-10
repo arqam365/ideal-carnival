@@ -122,7 +122,7 @@ export default function IndustriesPage() {
           <SectionHeading
             eyebrow="Sector Experience"
             title="Select a sector to explore the engagement"
-            intro="Each sector presents distinct challenges. Our approach is always tailored \u2014 here is how the work translates across industries."
+            intro="Each sector presents distinct challenges. Our approach is always tailored — here is how the work translates across industries."
             className="mb-14"
           />
           <IndustryExplorer industries={industries} />
