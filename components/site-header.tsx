@@ -1,15 +1,28 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { usePathname } from 'next/navigation'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link, usePathname, useRouter } from '@/i18n/navigation'
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
-import { primaryNav, solutions, industries } from '@/lib/site-data'
 import { cn } from '@/lib/utils'
 import { Wordmark } from '@/components/wordmark'
 import { gsap } from 'gsap'
 
+const NAV_KEYS = [
+  { key: 'about', href: '/about' as const },
+  { key: 'solutions', href: '/solutions' as const, mega: 'solutions' as const },
+  { key: 'industries', href: '/industries' as const, mega: 'industries' as const },
+  { key: 'programs', href: '/programs' as const },
+  { key: 'faculty', href: '/faculty' as const },
+  { key: 'partnerships', href: '/partnerships' as const },
+  { key: 'caseStudies', href: '/case-studies' as const },
+  { key: 'insights', href: '/insights' as const },
+]
+
 export function SiteHeader() {
+  const t = useTranslations('nav')
+  const locale = useLocale()
+  const router = useRouter()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [openMenu, setOpenMenu] = useState<string | null>(null)
@@ -17,39 +30,81 @@ export function SiteHeader() {
 
   const headerRef = useRef<HTMLElement>(null)
   const megaRef = useRef<HTMLDivElement>(null)
+  const drawerRef = useRef<HTMLDivElement>(null)
   const mobileNavRef = useRef<HTMLElement>(null)
+  const drawerReady = useRef(false)
 
-  // Entrance animation on mount
+  const tSolutions = useTranslations('solutions')
+  const tIndustries = useTranslations('industries')
+
+  type SolutionItem = { id: string; title: string }
+  type IndustryItem = { id: string; label: string }
+  const solutionItems = (tSolutions.raw('items') as SolutionItem[]).map((s) => ({
+    label: s.title,
+    href: `/solutions#${s.id}`,
+  }))
+  const industryItems = (tIndustries.raw('items') as IndustryItem[]).map((ind) => ({
+    label: ind.label,
+    href: `/industries#${ind.id}`,
+  }))
+
+  const switchLocale = () => {
+    router.replace(pathname, { locale: locale === 'en' ? 'ar' : 'en' })
+  }
+
+  // Header entrance — clearProps:'transform' after completion so the header's
+  // CSS transform doesn't break fixed-position children (mobile drawer)
   useEffect(() => {
     gsap.fromTo(
       headerRef.current,
       { opacity: 0, y: -16 },
-      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1 }
+      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: 0.1, clearProps: 'transform' }
     )
   }, [])
 
-  // Mega menu fade-slide in
+  // Mega menu fade-slide
   useEffect(() => {
     if (openMenu && megaRef.current) {
-      gsap.fromTo(
-        megaRef.current,
-        { opacity: 0, y: -6 },
-        { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out' }
-      )
+      gsap.fromTo(megaRef.current, { opacity: 0, y: -6 }, { opacity: 1, y: 0, duration: 0.22, ease: 'power2.out' })
     }
   }, [openMenu])
 
-  // Mobile nav link stagger on open
+  // Mobile drawer open/close with GSAP (no CSS transform classes)
   useEffect(() => {
-    if (mobileOpen && mobileNavRef.current) {
-      const links = mobileNavRef.current.querySelectorAll('a')
-      gsap.fromTo(
-        links,
-        { opacity: 0, x: 20 },
-        { opacity: 1, x: 0, duration: 0.4, stagger: 0.07, ease: 'power3.out', delay: 0.25 }
-      )
+    const drawer = drawerRef.current
+    if (!drawer || !drawerReady.current) return
+
+    if (mobileOpen) {
+      // slide in from the correct side
+      const fromX = locale === 'ar' ? '-100%' : '100%'
+      gsap.fromTo(drawer, { x: fromX, display: 'flex' }, { x: '0%', duration: 0.45, ease: 'power3.out' })
+
+      // stagger links after drawer starts sliding
+      const links = mobileNavRef.current?.querySelectorAll('a, button')
+      if (links?.length) {
+        gsap.fromTo(
+          links,
+          { opacity: 0, x: locale === 'ar' ? -16 : 16 },
+          { opacity: 1, x: 0, duration: 0.35, stagger: 0.06, ease: 'power3.out', delay: 0.2 }
+        )
+      }
+    } else {
+      const toX = locale === 'ar' ? '-100%' : '100%'
+      gsap.to(drawer, {
+        x: toX, duration: 0.35, ease: 'power3.in',
+        onComplete: () => gsap.set(drawer, { display: 'none' }),
+      })
     }
-  }, [mobileOpen])
+  }, [mobileOpen, locale])
+
+  // Initial hide drawer — must run before open/close effect can fire
+  useEffect(() => {
+    if (drawerRef.current) {
+      gsap.set(drawerRef.current, { x: locale === 'ar' ? '-100%' : '100%', display: 'none' })
+      drawerReady.current = true
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -75,23 +130,19 @@ export function SiteHeader() {
       onMouseLeave={() => setOpenMenu(null)}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-6 lg:px-10">
-        <Link
-          href="/"
-          className="relative z-10 flex items-center"
-          aria-label="EHP Academy home"
-        >
+        <Link href="/" className="relative z-10 flex items-center" aria-label="EHP Academy home">
           <Wordmark className="text-primary-foreground" />
         </Link>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-1 lg:flex">
-          {primaryNav.map((item) => {
+          {NAV_KEYS.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
               <div
-                key={item.label}
+                key={item.key}
                 className="relative"
-                onMouseEnter={() => setOpenMenu(item.columns ? item.label : null)}
+                onMouseEnter={() => setOpenMenu(item.mega ? item.key : null)}
               >
                 <Link
                   href={item.href}
@@ -100,18 +151,13 @@ export function SiteHeader() {
                     isActive ? 'text-gold' : 'text-primary-foreground/85 hover:text-gold',
                   )}
                 >
-                  {item.label}
-                  {item.columns && (
-                    <ChevronDown
-                      className={cn(
-                        'size-3 transition-transform duration-200',
-                        openMenu === item.label ? 'rotate-180' : '',
-                      )}
-                    />
+                  {t(item.key)}
+                  {item.mega && (
+                    <ChevronDown className={cn('size-3 transition-transform duration-200', openMenu === item.key ? 'rotate-180' : '')} />
                   )}
                   <span
                     className={cn(
-                      'absolute bottom-0.5 left-2 right-2 h-px origin-left bg-gold transition-transform duration-300',
+                      'absolute bottom-0.5 start-2 end-2 h-px bg-gold transition-transform duration-300',
                       isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                     )}
                   />
@@ -121,67 +167,68 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 border border-gold bg-gold px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-luxury text-gold-foreground transition-colors hover:bg-transparent hover:text-gold"
           >
-            Request Consultation
+            {t('requestConsultation')}
           </Link>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setMobileOpen(true)}
-          className="relative z-10 inline-flex items-center justify-center p-2 text-primary-foreground lg:hidden"
-          aria-label="Open menu"
-        >
-          <Menu className="size-6" />
-        </button>
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={switchLocale}
+            className="px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-luxury text-primary-foreground/70 transition-colors hover:text-gold"
+          >
+            {locale === 'en' ? 'AR' : 'EN'}
+          </button>
+          <button
+            type="button"
+            onClick={() => setMobileOpen(true)}
+            className="relative z-10 inline-flex items-center justify-center p-2 text-primary-foreground lg:hidden"
+            aria-label="Open menu"
+          >
+            <Menu className="size-6" />
+          </button>
+        </div>
       </div>
 
       {/* Mega menu panel */}
-      {primaryNav.map((item) =>
-        item.columns && openMenu === item.label ? (
+      {NAV_KEYS.map((item) =>
+        item.mega && openMenu === item.key ? (
           <div
-            key={`panel-${item.label}`}
+            key={`panel-${item.key}`}
             ref={megaRef}
             className="absolute inset-x-0 top-full hidden border-t border-gold/20 bg-primary/98 backdrop-blur-md lg:block"
-            onMouseEnter={() => setOpenMenu(item.label)}
+            onMouseEnter={() => setOpenMenu(item.key)}
           >
             <div className="mx-auto grid max-w-7xl grid-cols-12 gap-10 px-10 py-10">
-              <div className="col-span-4 border-r border-gold/15 pr-8">
-                <p className="font-heading text-2xl text-primary-foreground">
-                  {item.label}
-                </p>
+              <div className="col-span-4 border-e border-gold/15 pe-8">
+                <p className="font-heading text-2xl text-primary-foreground">{t(item.key)}</p>
                 <p className="mt-3 text-sm leading-relaxed text-primary-foreground/60">
-                  {item.label === 'Solutions'
-                    ? 'Strategic capability areas engaged by ministries, commands, and enterprises.'
-                    : 'Sector-specific protocol and service transformation programs.'}
+                  {item.mega === 'solutions' ? t('solutionsDesc') : t('industriesDesc')}
                 </p>
                 <Link
                   href={item.href}
                   className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-luxury text-gold hover:text-gold/80"
                 >
-                  View all <ChevronRight className="size-3.5" />
+                  {t('viewAll')} <ChevronRight className="size-3.5 rtl:rotate-180" />
                 </Link>
               </div>
               <div className="col-span-8 grid grid-cols-2 gap-x-8 gap-y-1">
-                {(item.label === 'Solutions' ? solutions : industries).map((sub) => (
+                {(item.mega === 'solutions' ? solutionItems : industryItems).map((sub) => (
                   <Link
                     key={sub.href}
-                    href={sub.href}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    href={sub.href as any}
                     onClick={() => setOpenMenu(null)}
                     className="group rounded-sm px-4 py-3 transition-colors hover:bg-primary-foreground/5"
                   >
                     <span className="block text-sm font-medium text-primary-foreground group-hover:text-gold">
                       {sub.label}
                     </span>
-                    {sub.description ? (
-                      <span className="mt-0.5 block text-xs leading-relaxed text-primary-foreground/50">
-                        {sub.description}
-                      </span>
-                    ) : null}
                   </Link>
                 ))}
               </div>
@@ -190,14 +237,12 @@ export function SiteHeader() {
         ) : null,
       )}
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — GSAP controlled, no CSS transform classes */}
       <div
-        className={cn(
-          'fixed inset-0 z-50 bg-primary transition-transform duration-500 lg:hidden',
-          mobileOpen ? 'translate-x-0' : 'translate-x-full',
-        )}
+        ref={drawerRef}
+        className="fixed inset-0 z-50 hidden flex-col bg-primary lg:hidden"
       >
-        <div className="flex h-20 items-center justify-between px-6">
+        <div className="flex h-20 shrink-0 items-center justify-between px-6">
           <Wordmark className="text-primary-foreground" />
           <button
             type="button"
@@ -210,13 +255,13 @@ export function SiteHeader() {
         </div>
         <nav
           ref={mobileNavRef}
-          className="flex h-[calc(100%-5rem)] flex-col gap-1 overflow-y-auto px-6 pb-10"
+          className="flex flex-col gap-1 overflow-y-auto px-6 pb-10"
         >
-          {primaryNav.map((item) => {
+          {NAV_KEYS.map((item) => {
             const isActive = pathname === item.href
             return (
               <Link
-                key={item.label}
+                key={item.key}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
@@ -224,16 +269,16 @@ export function SiteHeader() {
                   isActive ? 'text-gold' : 'text-primary-foreground',
                 )}
               >
-                {item.label}
+                {t(item.key)}
               </Link>
             )
           })}
           <Link
             href="/contact"
             onClick={() => setMobileOpen(false)}
-            className="mt-6 inline-flex items-center justify-center gap-2 bg-gold px-5 py-4 text-sm font-semibold uppercase tracking-luxury text-gold-foreground"
+            className="mt-4 inline-flex items-center justify-center bg-gold px-5 py-4 text-sm font-semibold uppercase tracking-luxury text-gold-foreground"
           >
-            Request Consultation
+            {t('requestConsultation')}
           </Link>
         </nav>
       </div>

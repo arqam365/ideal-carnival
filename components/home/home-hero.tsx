@@ -1,15 +1,18 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
-import Link from 'next/link'
+import { useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
 import { Eyebrow } from '@/components/section-primitives'
+import { Link } from '@/i18n/navigation'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export function HomeHero() {
+  const t = useTranslations('home.hero')
+
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -20,13 +23,8 @@ export function HomeHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Entrance: staggered fade-up on load
       gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .fromTo(
-          imageRef.current,
-          { scale: 1.08 },
-          { scale: 1, duration: 1.8 }
-        )
+        .fromTo(imageRef.current, { scale: 1.08 }, { scale: 1, duration: 1.8 })
         .fromTo(
           [eyebrowRef.current, headingRef.current, bodyRef.current, ctaRef.current],
           { opacity: 0, y: 28 },
@@ -34,29 +32,17 @@ export function HomeHero() {
           '-=1.2'
         )
 
-      // Parallax: image drifts up as user scrolls away
       gsap.to(imageRef.current, {
         yPercent: 30,
         ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: 'bottom top', scrub: true },
       })
 
-      // Content fades out and lifts as user scrolls away
       gsap.to(contentRef.current, {
         yPercent: -12,
         opacity: 0,
         ease: 'none',
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: '55% top',
-          scrub: true,
-        },
+        scrollTrigger: { trigger: sectionRef.current, start: 'top top', end: '55% top', scrub: true },
       })
     }, sectionRef)
 
@@ -74,33 +60,25 @@ export function HomeHero() {
         alt="EHP Academy diplomatic reception hall with hospitality staff in formal poise"
         className="absolute inset-0 -z-10 size-full object-cover"
       />
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-t from-primary via-primary/70 to-primary/30"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/80 to-transparent"
-        aria-hidden="true"
-      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-primary via-primary/70 to-primary/30" aria-hidden="true" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/80 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />
 
       <div ref={contentRef} className="mx-auto w-full max-w-7xl px-6 pb-20 pt-32 lg:px-10 lg:pb-28">
         <div className="max-w-3xl">
           <div ref={eyebrowRef}>
-            <Eyebrow light>House of Etiquette, Hospitality &amp; Protocol</Eyebrow>
+            <Eyebrow light>{t('eyebrow')}</Eyebrow>
           </div>
           <h1
             ref={headingRef}
             className="mt-6 text-balance font-heading text-4xl font-medium leading-[1.05] text-primary-foreground sm:text-5xl lg:text-[4.25rem]"
           >
-            Developing Saudi Arabia&apos;s Next Generation of Service Leaders
+            {t('heading')}
           </h1>
           <p
             ref={bodyRef}
             className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-primary-foreground/75"
           >
-            Global standards. Saudi values. Exceptional service. An executive
-            institution shaping how the Kingdom is represented &mdash; in
-            government, defense, hospitality, and on the world stage.
+            {t('body')}
           </p>
 
           <div ref={ctaRef} className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -108,14 +86,14 @@ export function HomeHero() {
               href="/contact"
               className="group inline-flex items-center justify-center gap-2 bg-gold px-7 py-4 text-[0.78rem] font-semibold uppercase tracking-luxury text-gold-foreground transition-colors hover:bg-gold/90"
             >
-              Request Consultation
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+              {t('cta1')}
+              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 rtl:group-hover:translate-x-0" />
             </Link>
             <Link
               href="/programs"
               className="inline-flex items-center justify-center gap-2 border border-primary-foreground/30 px-7 py-4 text-[0.78rem] font-semibold uppercase tracking-luxury text-primary-foreground transition-colors hover:border-gold hover:text-gold"
             >
-              Explore Programs
+              {t('cta2')}
             </Link>
           </div>
         </div>

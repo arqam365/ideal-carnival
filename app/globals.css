@@ -7,6 +7,7 @@
 @theme inline {
   --font-heading: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-inter), 'Inter Fallback', system-ui, sans-serif;
+  --font-arabic: var(--font-cairo), 'Cairo', sans-serif;
   --font-mono: var(--font-geist-mono), 'Geist Mono Fallback';
 
   --color-background: var(--background);
@@ -80,6 +81,16 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+  }
+  html[dir='rtl'] {
+    font-family: var(--font-arabic), sans-serif;
+  }
+  html[dir='rtl'] h1,
+  html[dir='rtl'] h2,
+  html[dir='rtl'] h3,
+  html[dir='rtl'] h4 {
+    font-family: var(--font-arabic), sans-serif;
+    font-weight: 600;
   }
   h1,
   h2,

@@ -1,21 +1,17 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { Eyebrow } from '@/components/section-primitives'
 
-type Stat = {
-  value: number
-  suffix: string
-  label: string
-}
+type StatData = { value: string; label: string }
 
-const stats: Stat[] = [
-  { value: 240, suffix: '+', label: 'Organizations Trained' },
-  { value: 18500, suffix: '+', label: 'Professionals Developed' },
-  { value: 96000, suffix: '+', label: 'Training Hours Delivered' },
-  { value: 10, suffix: '', label: 'Industries Served' },
-  { value: 24, suffix: '', label: 'Countries Connected' },
-]
+function parseStatValue(valueStr: string): { number: number; prefix: string; suffix: string } {
+  const clean = valueStr.replace(/,/g, '').replace(/\s/g, '')
+  const match = clean.match(/^([^0-9]*)([0-9]+)([^0-9]*)$/)
+  if (!match) return { number: 0, prefix: '', suffix: '' }
+  return { number: parseInt(match[2], 10), prefix: match[1], suffix: match[3] }
+}
 
 function useCountUp(target: number, run: boolean, duration = 1600) {
   const [value, setValue] = useState(0)
@@ -25,7 +21,6 @@ function useCountUp(target: number, run: boolean, duration = 1600) {
     const start = performance.now()
     const tick = (now: number) => {
       const progress = Math.min((now - start) / duration, 1)
-      // easeOutCubic
       const eased = 1 - Math.pow(1 - progress, 3)
       setValue(Math.round(eased * target))
       if (progress < 1) raf = requestAnimationFrame(tick)
@@ -36,13 +31,13 @@ function useCountUp(target: number, run: boolean, duration = 1600) {
   return value
 }
 
-function StatItem({ stat, run }: { stat: Stat; run: boolean }) {
-  const value = useCountUp(stat.value, run)
+function StatItem({ stat, run }: { stat: StatData; run: boolean }) {
+  const { number, prefix, suffix } = parseStatValue(stat.value)
+  const animatedValue = useCountUp(number, run)
   return (
-    <div className="flex flex-col gap-3 border-l border-gold/25 pl-6">
+    <div className="flex flex-col gap-3 border-s border-gold/25 ps-6">
       <span className="font-heading text-4xl font-medium text-primary-foreground lg:text-5xl">
-        {value.toLocaleString()}
-        {stat.suffix}
+        {prefix}{animatedValue.toLocaleString()}{suffix}
       </span>
       <span className="text-[0.74rem] uppercase tracking-luxury text-primary-foreground/60">
         {stat.label}
@@ -52,6 +47,9 @@ function StatItem({ stat, run }: { stat: Stat; run: boolean }) {
 }
 
 export function ImpactStats() {
+  const t = useTranslations('home.impact')
+  const stats = t.raw('stats') as StatData[]
+
   const ref = useRef<HTMLDivElement>(null)
   const [run, setRun] = useState(false)
 
@@ -59,12 +57,7 @@ export function ImpactStats() {
     const node = ref.current
     if (!node) return
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setRun(true)
-          observer.disconnect()
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) { setRun(true); observer.disconnect() } },
       { threshold: 0.3 },
     )
     observer.observe(node)
@@ -75,12 +68,12 @@ export function ImpactStats() {
     <section ref={ref} className="bg-primary py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-2xl">
-          <Eyebrow light>EHP Impact</Eyebrow>
+          <Eyebrow light>{t('eyebrow')}</Eyebrow>
           <h2 className="mt-5 font-heading text-3xl font-medium text-primary-foreground sm:text-4xl">
-            Measured excellence, national scale
+            {t('title')}
           </h2>
         </div>
-        <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-3 lg:grid-cols-5">
+        <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat) => (
             <StatItem key={stat.label} stat={stat} run={run} />
           ))}

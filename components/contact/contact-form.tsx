@@ -1,26 +1,21 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
-const enquiryOptions = [
-  'Institutional Partnership',
-  'Programme Enquiry',
-  'Executive Coaching',
-  'Event Protocol',
-  'Other',
-]
-
 export function ContactForm() {
+  const t = useTranslations('contact')
   const [state, setState] = useState<FormState>('idle')
+
+  const enquiryTypes = t.raw('enquiryTypes') as { label: string; body: string }[]
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setState('submitting')
-    // Simulate submission — wire to your preferred backend
     await new Promise((r) => setTimeout(r, 1200))
     setState('success')
   }
@@ -28,12 +23,9 @@ export function ContactForm() {
   if (state === 'success') {
     return (
       <div className="border border-gold/30 bg-primary p-10 text-center">
-        <span className="font-heading text-3xl text-primary-foreground">
-          Thank you.
-        </span>
+        <span className="font-heading text-3xl text-primary-foreground">Thank you.</span>
         <p className="mt-4 text-base leading-relaxed text-primary-foreground/70">
-          Your enquiry has been received. A senior EHP advisor will be in touch
-          within one business day.
+          Your enquiry has been received. A senior EHP advisor will be in touch within one business day.
         </p>
       </div>
     )
@@ -42,24 +34,21 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Full Name" id="name" type="text" required placeholder="H.E. Ahmed Al-Rashidi" />
-        <Field label="Title / Position" id="title" type="text" required placeholder="Director General" />
+        <Field label={t('form.yourName')} id="name" type="text" required />
+        <Field label={t('form.title')} id="title" type="text" required />
       </div>
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Institution / Organization" id="institution" type="text" required placeholder="Ministry of Tourism" />
-        <Field label="Country" id="country" type="text" required placeholder="Saudi Arabia" />
+        <Field label={t('form.institutionName')} id="institution" type="text" required />
+        <Field label="Country" id="country" type="text" required />
       </div>
       <div className="grid gap-6 sm:grid-cols-2">
-        <Field label="Email Address" id="email" type="email" required placeholder="name@institution.gov.sa" />
-        <Field label="Phone Number" id="phone" type="tel" placeholder="+966 5X XXX XXXX" />
+        <Field label={t('form.email')} id="email" type="email" required />
+        <Field label={t('form.phone')} id="phone" type="tel" />
       </div>
 
       <div>
-        <label
-          htmlFor="type"
-          className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground"
-        >
-          Nature of Enquiry
+        <label htmlFor="type" className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground">
+          {t('form.enquiryType')}
         </label>
         <select
           id="type"
@@ -67,30 +56,22 @@ export function ContactForm() {
           className="w-full border border-border bg-background px-4 py-3 text-sm text-foreground focus:border-primary focus:outline-none"
           defaultValue=""
         >
-          <option value="" disabled>
-            Select an enquiry type
-          </option>
-          {enquiryOptions.map((o) => (
-            <option key={o} value={o}>
-              {o}
-            </option>
+          <option value="" disabled>{t('form.selectType')}</option>
+          {enquiryTypes.map((o) => (
+            <option key={o.label} value={o.label}>{o.label}</option>
           ))}
         </select>
       </div>
 
       <div>
-        <label
-          htmlFor="message"
-          className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground"
-        >
-          Tell us about your requirement
+        <label htmlFor="message" className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground">
+          {t('form.message')}
         </label>
         <textarea
           id="message"
           name="message"
           rows={5}
           required
-          placeholder="Please describe your institution's current need, the scale of the engagement, and any timeline considerations."
           className="w-full resize-none border border-border bg-background px-4 py-3 text-sm leading-relaxed text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
         />
       </div>
@@ -100,52 +81,30 @@ export function ContactForm() {
         disabled={state === 'submitting'}
         className={cn(
           'group inline-flex items-center gap-2 bg-primary px-8 py-4 text-[0.78rem] font-semibold uppercase tracking-luxury text-primary-foreground transition-colors',
-          state === 'submitting'
-            ? 'cursor-wait opacity-70'
-            : 'hover:bg-gold hover:text-gold-foreground',
+          state === 'submitting' ? 'cursor-wait opacity-70' : 'hover:bg-gold hover:text-gold-foreground',
         )}
       >
-        {state === 'submitting' ? 'Sending…' : 'Submit Enquiry'}
+        {state === 'submitting' ? '…' : t('form.submit')}
         {state !== 'submitting' && (
-          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="size-4 transition-transform group-hover:translate-x-1 rtl:rotate-180 rtl:group-hover:-translate-x-1 rtl:group-hover:translate-x-0" />
         )}
       </button>
-      <p className="text-xs leading-relaxed text-muted-foreground">
-        By submitting this form you agree that EHP Academy may contact you
-        regarding your enquiry. All information is treated in strict confidence.
-      </p>
     </form>
   )
 }
 
-function Field({
-  label,
-  id,
-  type,
-  required,
-  placeholder,
-}: {
-  label: string
-  id: string
-  type: string
-  required?: boolean
-  placeholder?: string
-}) {
+function Field({ label, id, type, required }: { label: string; id: string; type: string; required?: boolean }) {
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground"
-      >
+      <label htmlFor={id} className="mb-2 block text-[0.72rem] font-semibold uppercase tracking-luxury text-muted-foreground">
         {label}
-        {required && <span className="ml-1 text-gold">*</span>}
+        {required && <span className="ms-1 text-gold">*</span>}
       </label>
       <input
         type={type}
         id={id}
         name={id}
         required={required}
-        placeholder={placeholder}
         className="w-full border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/60 focus:border-primary focus:outline-none"
       />
     </div>

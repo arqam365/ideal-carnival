@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server'
 import { Eyebrow } from '@/components/section-primitives'
 
 const partners = [
@@ -9,15 +10,16 @@ const partners = [
   { name: 'Aviation Excellence Network', abbr: 'AEN' },
 ]
 
-export function PartnersStrip() {
+export async function PartnersStrip() {
+  const t = await getTranslations('home.partners')
+
   return (
     <section className="border-y border-border bg-muted py-16">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="flex flex-col items-center text-center">
-          <Eyebrow>In Partnership With</Eyebrow>
+          <Eyebrow>{t('eyebrow')}</Eyebrow>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            EHP collaborates with leading international hospitality, protocol,
-            and certification bodies to deliver globally benchmarked standards.
+            {t('body')}
           </p>
         </div>
         <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
