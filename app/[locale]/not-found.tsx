@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { ArrowRight, Home } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
+import Link from 'next/link'
 
 export default function NotFound() {
   return (
