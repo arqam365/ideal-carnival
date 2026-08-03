@@ -173,8 +173,8 @@
       ]
     },
     "partners": {
-      "eyebrow": "In Partnership With",
-      "body": "EHP collaborates with leading international hospitality, protocol, and certification bodies to deliver globally benchmarked standards."
+      "eyebrow": "International Partnerships",
+      "body": "EHP is actively building alliances with world-leading hospitality schools, protocol bodies, and certification institutes — bringing internationally benchmarked standards to Saudi Arabia."
     }
   },
   "about": {
@@ -401,27 +401,28 @@
   "partnerships": {
     "meta": {
       "title": "Partnerships",
-      "description": "EHP Academy partners with leading international hospitality schools, protocol bodies, and certification institutes to deliver globally benchmarked standards in Saudi Arabia."
+      "description": "EHP Academy is seeking world-class international partners — hospitality schools, protocol bodies, and certification institutes — to co-deliver globally benchmarked standards in Saudi Arabia."
     },
     "hero": {
       "eyebrow": "Partnerships",
-      "title": "Global standards, delivered through trusted institutional alliances",
-      "intro": "EHP does not operate in isolation. We build enduring partnerships with the world's leading institutions in hospitality, protocol, and executive education to ensure our programmes carry international authority."
+      "title": "Seeking world-class international partners to advance excellence in Saudi Arabia",
+      "intro": "EHP Academy is building strategic alliances with leading hospitality schools, protocol bodies, and certification institutes — to bring internationally recognised standards to Saudi professionals and institutions aligned with Vision 2030."
     },
-    "whyEyebrow": "Why We Partner",
-    "whyTitle": "Excellence has no single origin",
-    "whyP1": "Saudi Arabia's ambition is global. The institutions and professionals we develop will be measured against international standards — by foreign heads of state, international partners, and global guests. Our responsibility is to ensure those standards are embedded in every programme we deliver.",
-    "whyP2": "Our partnerships are carefully curated to bring the world's most credible hospitality, protocol, and executive education institutions into collaborative relationship with EHP. Every alliance is chosen for its direct relevance to the Saudi context and Vision 2030 ambitions.",
-    "whyP3": "We do not collect logos. We build working partnerships that enrich our curriculum, validate our faculty, and strengthen the credentials of every participant we develop.",
-    "partnersEyebrow": "Our Partners",
-    "partnersTitle": "Institutions that shape global standards",
-    "benefitsEyebrow": "What Partnerships Deliver",
-    "benefitsTitle": "The value of international alliance",
+    "whyEyebrow": "Why Partner With EHP",
+    "whyTitle": "Saudi Arabia's moment. Your expertise. Our platform.",
+    "whyP1": "Vision 2030 is creating extraordinary demand for world-class service and protocol expertise across Saudi Arabia. EHP Academy is the Saudi institution positioned to deliver that expertise — with direct access to government ministries, defense commands, hospitality groups, and enterprises across the Kingdom.",
+    "whyP2": "We seek international partners who can validate our programmes, co-develop our curriculum, and bring internationally recognised certification to the professionals we develop. In return, we offer meaningful access to Saudi Arabia's most significant human-capability transformation programme.",
+    "whyP3": "A partnership with EHP is not a licensing arrangement. It is an institutional alliance that extends your reach into a fast-growing market and builds lasting co-branded presence in the Kingdom.",
+    "partnersEyebrow": "Who We Seek",
+    "partnersTitle": "Our ideal institutional partner",
+    "partnersIntro": "We are seeking serious, accredited institutions in the following areas — whose expertise is directly applicable to the programmes EHP delivers across Saudi Arabia.",
+    "benefitsEyebrow": "What Partners Gain",
+    "benefitsTitle": "What EHP brings to every alliance",
     "inquiryEyebrow": "Institutional Partnership",
-    "inquiryTitle": "Interested in a strategic alliance with EHP?",
-    "inquiryBody": "We welcome conversations with international institutions whose expertise aligns with our mission. All partnership discussions begin with a confidential conversation.",
-    "ctaTitle": "Strengthen your institution through EHP",
-    "ctaBody": "Whether you are a government authority, a hospitality group, or an international institution, there may be a meaningful role for partnership with EHP Academy."
+    "inquiryTitle": "Interested in a strategic alliance with EHP Academy?",
+    "inquiryBody": "We welcome conversations with international institutions whose expertise aligns with our mission. If your institution operates in hospitality education, protocol, certification, or executive development — we would welcome a confidential discussion.",
+    "ctaTitle": "A partnership that advances excellence in Saudi Arabia",
+    "ctaBody": "If your institution is looking for a meaningful presence in the Kingdom — and a serious Saudi partner committed to international standards — we would like to speak with you."
   },
   "caseStudies": {
     "meta": {

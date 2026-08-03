@@ -4,22 +4,22 @@ import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitiv
 import { ConsultationCTA } from '@/components/consultation-cta'
 import { Link } from '@/i18n/navigation'
 
-type Partner = { category: string; name: string; location: string; relationship: string }
-const partners: Partner[] = [
-  { category: 'Hospitality Education', name: 'École Hôtelière de Lausanne (EHL)', location: 'Lausanne, Switzerland', relationship: 'Curriculum benchmarking and faculty exchange for hospitality excellence programmes.' },
-  { category: 'Protocol & Diplomacy', name: 'Diplomatic Academy of Vienna', location: 'Vienna, Austria', relationship: 'Certification alignment and resource sharing for diplomatic protocol programmes.' },
-  { category: 'Certification', name: 'Customer Experience Professionals Association (CXPA)', location: 'International', relationship: 'Aligned accreditation pathway for EHP Customer Experience programmes.' },
-  { category: 'Luxury Service', name: 'Leading Hotels of the World — Service Academy', location: 'New York / Global', relationship: 'Delivery of internationally recognised hospitality standards and certification.' },
-  { category: 'Professional Development', name: 'Association of Image Consultants International (AICI)', location: 'International', relationship: 'Accreditation for executive presence and professional image faculty.' },
-  { category: 'Government Excellence', name: 'Mohammed bin Salman College of Business & Entrepreneurship', location: 'NEOM, Saudi Arabia', relationship: 'Collaborative research on public sector service transformation and leadership.' },
+type PartnerProfile = { number: string; title: string; body: string }
+const partnerProfiles: PartnerProfile[] = [
+  { number: '01', title: 'Hospitality Schools', body: 'Accredited hotel management and hospitality institutions offering internationally recognised certifications that we can deliver to Saudi graduates and working professionals.' },
+  { number: '02', title: 'Protocol & Diplomatic Bodies', body: 'International protocol academies and diplomatic training institutes whose curriculum standards elevate and validate our programme delivery.' },
+  { number: '03', title: 'Professional Certification Bodies', body: 'Accreditation organisations in customer experience, service design, and executive presence — enabling us to offer co-branded qualifications with international currency.' },
+  { number: '04', title: 'Executive Education Providers', body: 'Business schools and leadership development institutions bringing management excellence benchmarks to our senior faculty and executive programmes.' },
+  { number: '05', title: 'Research & Standards Bodies', body: 'Institutions engaged in service excellence research, protocol standards development, and professional practice frameworks relevant to the Gulf context.' },
+  { number: '06', title: 'Luxury Service Institutes', body: 'Recognised centres of excellence in five-star hospitality, VIP service, and luxury guest experience whose standards we embed in our hospitality programmes.' },
 ]
 
-type Benefit = { title: string; body: string }
-const partnerBenefits: Benefit[] = [
-  { title: 'Shared Standards', body: 'Access to internationally benchmarked curriculum frameworks and delivery standards that elevate the credibility of every EHP programme.' },
-  { title: 'Faculty Exchange', body: 'Collaborative faculty arrangements that bring world-class expertise directly into Saudi Arabia and build lasting institutional relationships.' },
-  { title: 'Joint Certification', body: 'Co-branded certification pathways that hold value in international professional communities and government institutions.' },
-  { title: 'Research Collaboration', body: 'Shared research initiatives on service excellence, protocol evolution, and hospitality standards in the Arabian context.' },
+type WhatWeOffer = { title: string; body: string }
+const whatWeOffer: WhatWeOffer[] = [
+  { title: 'Saudi Market Access', body: 'Direct access to government ministries, defense commands, leading hospitality groups, and major Saudi enterprises — through institutional relationships built over years of delivery.' },
+  { title: 'Vision 2030 Alignment', body: 'Every programme we develop is anchored in Saudi Arabia\'s national transformation agenda — giving international partners direct relevance to one of the world\'s most ambitious development programmes.' },
+  { title: 'Operational Bridge', body: 'We serve as your cultural and operational bridge into the Saudi market — handling curriculum adaptation, Arabic delivery, institutional engagement, and logistical coordination on your behalf.' },
+  { title: 'Prestige Co-branding', body: 'Association with a serious, government-adjacent Saudi institution that carries credibility in the professional, public sector, and luxury hospitality communities of the Kingdom.' },
 ]
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -54,19 +54,14 @@ export default async function PartnershipsPage({ params }: { params: Promise<{ l
       <section className="bg-accent/30 py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
           <div className="reveal mb-14">
-            <SectionHeading eyebrow={t('partnersEyebrow')} title={t('partnersTitle')} />
+            <SectionHeading eyebrow={t('partnersEyebrow')} title={t('partnersTitle')} intro={t('partnersIntro')} />
           </div>
-          <div className="space-y-px overflow-hidden border border-border">
-            {partners.map((partner, i) => (
-              <div key={partner.name} className="reveal grid gap-6 bg-card p-8 lg:grid-cols-12 lg:gap-10 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
-                <div className="lg:col-span-4">
-                  <span className="text-[0.68rem] font-semibold uppercase tracking-luxury text-gold">{partner.category}</span>
-                  <h3 className="mt-2 font-heading text-xl font-medium text-primary">{partner.name}</h3>
-                  <p className="mt-1.5 text-xs uppercase tracking-luxury text-muted-foreground">{partner.location}</p>
-                </div>
-                <div className="flex items-center lg:col-span-8">
-                  <p className="text-base leading-relaxed text-muted-foreground">{partner.relationship}</p>
-                </div>
+          <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+            {partnerProfiles.map((profile, i) => (
+              <div key={profile.number} className="reveal flex flex-col bg-card p-8 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
+                <span className="font-mono text-xs text-gold">{profile.number}</span>
+                <h3 className="mt-4 font-heading text-xl font-medium text-primary">{profile.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{profile.body}</p>
               </div>
             ))}
           </div>
@@ -79,10 +74,10 @@ export default async function PartnershipsPage({ params }: { params: Promise<{ l
             <SectionHeading light eyebrow={t('benefitsEyebrow')} title={t('benefitsTitle')} />
           </div>
           <div className="grid gap-px overflow-hidden border border-gold/20 bg-gold/20 sm:grid-cols-2">
-            {partnerBenefits.map((benefit, i) => (
-              <div key={benefit.title} className="reveal bg-primary p-8 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
-                <h3 className="font-heading text-2xl font-medium text-primary-foreground">{benefit.title}</h3>
-                <p className="mt-4 text-base leading-relaxed text-primary-foreground/70">{benefit.body}</p>
+            {whatWeOffer.map((item, i) => (
+              <div key={item.title} className="reveal bg-primary p-8 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
+                <h3 className="font-heading text-2xl font-medium text-primary-foreground">{item.title}</h3>
+                <p className="mt-4 text-base leading-relaxed text-primary-foreground/70">{item.body}</p>
               </div>
             ))}
           </div>
