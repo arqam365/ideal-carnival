@@ -71,6 +71,11 @@ export function SiteFooter() {
 
         <div className="flex flex-col items-center justify-between gap-4 py-8 text-xs text-primary-foreground/50 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} {t('copyright')}</p>
+          <div className="flex items-center gap-5">
+            <Link href="/privacy-policy" className="transition-colors hover:text-gold">{t('privacyPolicy')}</Link>
+            <Link href="/terms" className="transition-colors hover:text-gold">{t('terms')}</Link>
+            <Link href="/cookie-policy" className="transition-colors hover:text-gold">{t('cookiePolicy')}</Link>
+          </div>
           <p className="uppercase tracking-luxury">{t('vision2030')}</p>
         </div>
       </div>

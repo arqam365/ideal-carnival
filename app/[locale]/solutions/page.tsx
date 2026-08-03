@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { PageHero, SectionHeading } from '@/components/section-primitives'
@@ -52,8 +53,8 @@ export default async function SolutionsPage({ params }: { params: Promise<{ loca
                   <p className="text-[0.72rem] font-semibold uppercase tracking-luxury text-gold">{tCommon('outcome')}</p>
                   <p className="mt-2 text-base font-medium text-primary">{solution.outcome}</p>
                 </div>
-                <div className="mt-8 overflow-hidden border border-border">
-                  <img src={solutionImages[solution.id] ?? '/images/about-leadership.png'} alt={solution.title} className="w-full aspect-[16/9] object-cover opacity-80" />
+                <div className="relative mt-8 aspect-[16/9] overflow-hidden border border-border">
+                  <Image src={solutionImages[solution.id] ?? '/images/about-leadership.png'} alt={solution.title} fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover opacity-80" />
                 </div>
               </div>
               <div className="reveal lg:col-span-6 lg:col-start-7">

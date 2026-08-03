@@ -237,8 +237,7 @@ export const programs: Program[] = [
   },
 ]
 
-const levels = ['All', 'Foundation', 'Professional', 'Executive'] as const
-const categories = ['All', ...Array.from(new Set(programs.map((p) => p.category)))]
+const levels = ['All', 'Foundation', 'Professional', 'Advanced', 'Executive'] as const
 
 type Level = (typeof levels)[number]
 
@@ -363,11 +362,13 @@ function ProgramCard({ program }: { program: Program }) {
   )
 }
 
-export function ProgramCatalog() {
+export function ProgramCatalog({ programs: propPrograms }: { programs?: Program[] } = {}) {
+  const data = propPrograms ?? programs
+  const categories = ['All', ...Array.from(new Set(data.map((p) => p.category)))]
   const [level, setLevel] = useState<Level>('All')
   const [category, setCategory] = useState('All')
 
-  const filtered = programs.filter(
+  const filtered = data.filter(
     (p) =>
       (level === 'All' || p.level === level) &&
       (category === 'All' || p.category === category),

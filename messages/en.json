@@ -32,7 +32,10 @@
     "email": "engage@ehpacademy.sa",
     "phone": "+966 11 200 0000",
     "copyright": "EHP Academy. All rights reserved.",
-    "vision2030": "Aligned with Saudi Vision 2030"
+    "vision2030": "Aligned with Saudi Vision 2030",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "cookiePolicy": "Cookie Policy"
   },
   "common": {
     "outcome": "Outcome",
@@ -49,6 +52,10 @@
     "defaultBody": "Whether you represent a ministry, a command, an authority, or an enterprise, our advisors will design an engagement around your mandate."
   },
   "home": {
+    "meta": {
+      "title": "EHP Academy — House of Etiquette, Hospitality & Protocol",
+      "description": "EHP Academy develops Saudi Arabia's next generation of service leaders through global standards and Saudi values. Protocol, hospitality, and executive presence for ministries, commands, and enterprises."
+    },
     "hero": {
       "eyebrow": "House of Etiquette, Hospitality & Protocol",
       "heading": "Developing Saudi Arabia's Next Generation of Service Leaders",
@@ -350,7 +357,22 @@
       { "mode": "Bespoke Pathway", "desc": "A fully custom programme sequence designed around your organisation's mandate, culture, and ambition." }
     ],
     "ctaTitle": "Build a custom development pathway for your institution",
-    "ctaBody": "Our advisors will combine the right programmes into a coherent, sustained journey — aligned with your objectives and your people."
+    "ctaBody": "Our advisors will combine the right programmes into a coherent, sustained journey — aligned with your objectives and your people.",
+    "inquiry": {
+      "eyebrow": "Programme Enquiry",
+      "title": "Request programme information",
+      "intro": "Tell us which programme interests your institution and we will send a detailed brief within one business day.",
+      "programLabel": "Programme of Interest",
+      "programPlaceholder": "Select a programme",
+      "nameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "phoneLabel": "Phone Number",
+      "institutionLabel": "Institution",
+      "messageLabel": "Additional context (optional)",
+      "submit": "Send Enquiry",
+      "success": "Enquiry received. We will be in touch shortly.",
+      "error": "Something went wrong. Please email us at engage@ehpacademy.sa"
+    }
   },
   "faculty": {
     "meta": {
@@ -444,6 +466,26 @@
     "requestAccess": "Request Access",
     "ctaTitle": "Engage the institution that thinks deeply about excellence",
     "ctaBody": "These perspectives emerge from practice, not research alone. Speak to our advisors about how they apply to your institution."
+  },
+  "legal": {
+    "privacy": {
+      "meta": { "title": "Privacy Policy", "description": "EHP Academy privacy policy — how we collect, use, and protect your information." },
+      "eyebrow": "Legal",
+      "title": "Privacy Policy",
+      "placeholder": "This Privacy Policy will be updated with EHP Academy's official content prior to launch. For enquiries regarding data privacy, please contact us at engage@ehpacademy.sa."
+    },
+    "terms": {
+      "meta": { "title": "Terms & Conditions", "description": "EHP Academy terms and conditions governing use of this website and our services." },
+      "eyebrow": "Legal",
+      "title": "Terms & Conditions",
+      "placeholder": "These Terms & Conditions will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at engage@ehpacademy.sa."
+    },
+    "cookies": {
+      "meta": { "title": "Cookie Policy", "description": "EHP Academy cookie policy — how we use cookies and similar technologies on this website." },
+      "eyebrow": "Legal",
+      "title": "Cookie Policy",
+      "placeholder": "This Cookie Policy will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at engage@ehpacademy.sa."
+    }
   },
   "contact": {
     "meta": {

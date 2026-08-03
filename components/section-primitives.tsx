@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
 import { gsap } from 'gsap'
@@ -90,9 +91,9 @@ export function PageHero({
 }: {
   eyebrow: string
   title: ReactNode
-  intro: string
-  image: string
-  imageAlt: string
+  intro?: string
+  image?: string
+  imageAlt?: string
 }) {
   const sectionRef = useRef<HTMLElement>(null)
   const imageRef = useRef<HTMLImageElement>(null)
@@ -117,11 +118,14 @@ export function PageHero({
 
   return (
     <section ref={sectionRef} className="relative isolate overflow-hidden bg-primary pt-20">
-      <img
+      <Image
         ref={imageRef}
-        src={image || '/placeholder.svg'}
-        alt={imageAlt}
-        className="absolute inset-0 -z-10 size-full object-cover opacity-30"
+        src={image || '/images/about-leadership.png'}
+        alt={imageAlt ?? ''}
+        fill
+        priority
+        sizes="100vw"
+        className="-z-10 object-cover opacity-30"
       />
       <div
         className="absolute inset-0 -z-10 bg-gradient-to-b from-primary/85 via-primary/80 to-primary"
@@ -139,13 +143,15 @@ export function PageHero({
           >
             {title}
           </h1>
-          <p
-            ref={bodyRef}
-            style={{ opacity: 0 }}
-            className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-primary-foreground/70"
-          >
-            {intro}
-          </p>
+          {intro && (
+            <p
+              ref={bodyRef}
+              style={{ opacity: 0 }}
+              className="mt-6 max-w-2xl text-pretty text-lg leading-relaxed text-primary-foreground/70"
+            >
+              {intro}
+            </p>
+          )}
         </div>
       </div>
     </section>

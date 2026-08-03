@@ -1,9 +1,15 @@
+import Image from 'next/image'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { ArrowUpRight } from 'lucide-react'
+import { eq } from 'drizzle-orm'
+import { db } from '@/lib/db'
+import { insights as insightsTable } from '@/lib/db/schema'
 import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitives'
 import { ConsultationCTA } from '@/components/consultation-cta'
 import { Link } from '@/i18n/navigation'
+
+export const revalidate = 3600
 
 const categoryImages: Record<string, string> = {
   'Diplomatic Protocol': '/images/ceremony.png',
@@ -43,8 +49,14 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
   setRequestLocale(locale)
   const t = await getTranslations('insights')
 
-  const featured = articles.find((a) => a.featured)
-  const rest = articles.filter((a) => !a.featured)
+  let dbRows: typeof insightsTable.$inferSelect[] = []
+  try { dbRows = await db.select().from(insightsTable).where(eq(insightsTable.published, true)).orderBy(insightsTable.id) } catch {}
+  const data: Article[] = dbRows.length
+    ? dbRows.map((r) => ({ slug: r.slug, category: r.category, title: r.title, excerpt: r.excerpt, readTime: r.readTime, date: r.date, featured: r.featured }))
+    : articles
+
+  const featured = data.find((a) => a.featured)
+  const rest = data.filter((a) => !a.featured)
 
   return (
     <main>
@@ -79,8 +91,8 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
                   </span>
                 </div>
               </div>
-              <div className="hidden overflow-hidden border border-gold/20 lg:col-span-5 lg:block">
-                <img src="/images/insights-feature.png" alt="Protocol and soft power" className="size-full object-cover opacity-70" />
+              <div className="relative hidden overflow-hidden border border-gold/20 lg:col-span-5 lg:block">
+                <Image src="/images/insights-feature.png" alt="Protocol and soft power" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover opacity-70" />
               </div>
             </div>
           </div>
@@ -96,10 +108,12 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
             {rest.map((article, i) => (
               <article key={article.slug} className="reveal flex flex-col bg-card" style={{ transitionDelay: `${(i % 3) * 60}ms` }}>
                 <div className="relative aspect-[16/9] overflow-hidden bg-accent">
-                  <img
+                  <Image
                     src={categoryImages[article.category] ?? '/images/about-leadership.png'}
                     alt={article.title}
-                    className="size-full object-cover opacity-80 transition-transform duration-700 hover:scale-105"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover opacity-80 transition-transform duration-700 hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" aria-hidden="true" />
                   <span className="absolute bottom-4 start-4 text-[0.65rem] font-semibold uppercase tracking-luxury text-gold">{article.category}</span>
@@ -129,8 +143,8 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
           <div className="grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-3 lg:grid-cols-6">
             {categories.slice(1).map((cat) => (
               <div key={cat} className="reveal flex flex-col gap-3 bg-card p-5">
-                <div className="aspect-[4/3] overflow-hidden bg-accent">
-                  <img src={categoryImages[cat] ?? '/images/about-leadership.png'} alt={cat} className="size-full object-cover opacity-60" />
+                <div className="relative aspect-[4/3] overflow-hidden bg-accent">
+                  <Image src={categoryImages[cat] ?? '/images/about-leadership.png'} alt={cat} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 17vw" className="object-cover opacity-60" />
                 </div>
                 <span className="text-[0.65rem] font-semibold uppercase leading-tight tracking-luxury text-primary">{cat}</span>
               </div>

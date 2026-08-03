@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { ArrowRight } from 'lucide-react'
 import { Eyebrow } from '@/components/section-primitives'
@@ -54,11 +55,14 @@ export function HomeHero() {
       ref={sectionRef}
       className="relative isolate flex min-h-screen items-end overflow-hidden bg-primary"
     >
-      <img
+      <Image
         ref={imageRef}
         src="/images/hero-protocol.png"
         alt="EHP Academy diplomatic reception hall with hospitality staff in formal poise"
-        className="absolute inset-0 -z-10 size-full object-cover"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-10 object-cover"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-primary via-primary/70 to-primary/30" aria-hidden="true" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-r from-primary/80 to-transparent rtl:bg-gradient-to-l" aria-hidden="true" />

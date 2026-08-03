@@ -16,8 +16,32 @@ export function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setState('submitting')
-    await new Promise((r) => setTimeout(r, 1200))
-    setState('success')
+    const data = Object.fromEntries(new FormData(e.currentTarget))
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+      setState(res.ok ? 'success' : 'error')
+    } catch {
+      setState('error')
+    }
+  }
+
+  if (state === 'error') {
+    return (
+      <div className="border border-destructive/40 bg-destructive/5 p-10 text-center">
+        <span className="font-heading text-2xl text-destructive">Something went wrong.</span>
+        <p className="mt-4 text-sm text-muted-foreground">Please try again or email us directly at engage@ehpacademy.sa</p>
+        <button
+          onClick={() => setState('idle')}
+          className="mt-6 text-xs font-semibold uppercase tracking-luxury text-primary underline-offset-4 hover:underline"
+        >
+          Try again
+        </button>
+      </div>
+    )
   }
 
   if (state === 'success') {

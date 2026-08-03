@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { ArrowRight } from 'lucide-react'
 import { Link } from '@/i18n/navigation'
@@ -19,11 +20,13 @@ export async function ConsultationCTA({
     <section className="bg-background py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="relative isolate overflow-hidden border border-gold/30 bg-primary px-8 py-16 lg:px-16 lg:py-20">
-          <img
+          <Image
             src="/images/executive-presence.png"
             alt=""
-            aria-hidden="true"
-            className="absolute inset-0 -z-10 size-full object-cover opacity-15"
+            aria-hidden
+            fill
+            sizes="100vw"
+            className="-z-10 object-cover opacity-15"
           />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">

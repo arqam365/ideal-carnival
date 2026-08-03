@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitives'
@@ -32,8 +33,8 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
         <div className="mx-auto grid max-w-7xl gap-14 px-6 lg:grid-cols-12 lg:px-10">
           <div className="reveal space-y-10 lg:col-span-5">
             <SectionHeading eyebrow={t('story.eyebrow')} title={t('story.title')} />
-            <div className="overflow-hidden border border-border">
-              <img src="/images/about-leadership.png" alt="EHP Academy leadership" className="w-full object-cover aspect-[4/3]" />
+            <div className="relative aspect-[4/3] overflow-hidden border border-border">
+              <Image src="/images/about-leadership.png" alt="EHP Academy leadership" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
             </div>
           </div>
           <div className="reveal space-y-6 text-base leading-relaxed text-muted-foreground lg:col-span-7 lg:pt-4">
@@ -96,7 +97,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       <section className="relative isolate overflow-hidden">
-        <img src="/images/executive-presence.png" alt="" className="absolute inset-0 -z-10 size-full object-cover" />
+        <Image src="/images/executive-presence.png" alt="" fill sizes="100vw" className="-z-10 object-cover" />
         <div className="absolute inset-0 -z-10 bg-primary/85" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="max-w-3xl reveal">

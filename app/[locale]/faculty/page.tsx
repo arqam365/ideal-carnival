@@ -1,7 +1,13 @@
+import Image from 'next/image'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
+import { asc } from 'drizzle-orm'
+import { db } from '@/lib/db'
+import { faculty as facultyTable } from '@/lib/db/schema'
 import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitives'
 import { ConsultationCTA } from '@/components/consultation-cta'
+
+export const revalidate = 3600
 
 const facultyImages = ['/images/faculty-1.png','/images/faculty-2.png','/images/faculty-3.png','/images/faculty-1.png','/images/faculty-2.png','/images/faculty-3.png']
 
@@ -28,6 +34,12 @@ export default async function FacultyPage({ params }: { params: Promise<{ locale
   const t = await getTranslations('faculty')
   const disciplines = t.raw('disciplines') as string[]
 
+  let dbRows: typeof facultyTable.$inferSelect[] = []
+  try { dbRows = await db.select().from(facultyTable).orderBy(asc(facultyTable.sortOrder)) } catch {}
+  const members: FacultyMember[] = dbRows.length
+    ? dbRows.map((r) => ({ name: r.name, title: r.title, specialisation: r.specialisation, bio: r.bio, credentials: r.credentials }))
+    : faculty
+
   return (
     <main>
       <PageHero eyebrow={t('hero.eyebrow')} title={t('hero.title')} intro={t('hero.intro')} image="/images/about-leadership.png" imageAlt="EHP Academy faculty in formal consultation" />
@@ -51,11 +63,11 @@ export default async function FacultyPage({ params }: { params: Promise<{ locale
             <SectionHeading eyebrow={t('gridEyebrow')} title={t('gridTitle')} />
           </div>
           <div className="space-y-px overflow-hidden border border-border">
-            {faculty.map((member, i) => (
+            {members.map((member, i) => (
               <article key={member.name} className="reveal grid gap-8 bg-card p-8 lg:grid-cols-12 lg:gap-12 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
                 <div className="lg:col-span-4">
                   <div className="mb-6 aspect-[4/3] overflow-hidden bg-accent">
-                    <img src={facultyImages[i]} alt={member.name} className="size-full object-cover object-top grayscale" />
+                    <Image src={facultyImages[i]} alt={member.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-top grayscale" />
                   </div>
                   <div className="mb-4 h-px w-10 bg-gold" aria-hidden="true" />
                   <h3 className="font-heading text-2xl font-medium text-primary">{member.name}</h3>

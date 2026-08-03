@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { SectionHeading } from '@/components/section-primitives'
 import { cn } from '@/lib/utils'
@@ -57,11 +58,13 @@ export function ProtocolInPractice() {
           <div className="lg:col-span-8">
             <div className="overflow-hidden border border-gold/20">
               <div className="relative aspect-[16/9] overflow-hidden">
-                <img
+                <Image
                   key={image + active}
                   src={image}
                   alt={imageAlt}
-                  className="size-full animate-in fade-in duration-700 object-cover"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="animate-in fade-in duration-700 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent" aria-hidden="true" />
               </div>

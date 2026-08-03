@@ -1,6 +1,12 @@
+import Image from 'next/image'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 import { ArrowRight } from 'lucide-react'
+import { eq } from 'drizzle-orm'
+import { db } from '@/lib/db'
+import { caseStudies as caseStudiesTable } from '@/lib/db/schema'
+
+export const revalidate = 3600
 import { PageHero, SectionHeading, Eyebrow } from '@/components/section-primitives'
 import { ConsultationCTA } from '@/components/consultation-cta'
 import { Link } from '@/i18n/navigation'
@@ -68,6 +74,12 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ lo
   const t = await getTranslations('caseStudies')
   const tCommon = await getTranslations('common')
 
+  let dbRows: typeof caseStudiesTable.$inferSelect[] = []
+  try { dbRows = await db.select().from(caseStudiesTable).where(eq(caseStudiesTable.published, true)).orderBy(caseStudiesTable.id) } catch {}
+  const studies: CaseStudy[] = dbRows.length
+    ? dbRows.map((r) => ({ id: r.slug, sector: r.sector, institution: r.institution, headline: r.headline, challenge: r.challenge, assessment: r.assessment, strategy: r.strategy, implementation: r.implementation, transformation: r.transformation, results: r.results, impact: r.impact }))
+    : caseStudies
+
   return (
     <main>
       <PageHero
@@ -84,7 +96,7 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ lo
             <SectionHeading eyebrow={t('listingEyebrow')} title={t('listingTitle')} intro={t('listingIntro')} />
           </div>
           <div className="space-y-3">
-            {caseStudies.map((cs, i) => (
+            {studies.map((cs, i) => (
               <a
                 key={cs.id}
                 href={`#${cs.id}`}
@@ -93,10 +105,12 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ lo
               >
                 <div className="grid gap-0 lg:grid-cols-12">
                   <div className="relative hidden overflow-hidden lg:col-span-3 lg:block">
-                    <img
+                    <Image
                       src={sectorImages[cs.sector] ?? '/images/about-leadership.png'}
                       alt={cs.sector}
-                      className="size-full object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
+                      fill
+                      sizes="25vw"
+                      className="object-cover opacity-60 transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-primary/50" aria-hidden="true" />
                     <span className="absolute bottom-4 start-4 text-[0.65rem] font-semibold uppercase tracking-luxury text-gold">{cs.sector}</span>
@@ -119,7 +133,7 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ lo
         </div>
       </section>
 
-      {caseStudies.map((cs, idx) => (
+      {studies.map((cs, idx) => (
         <section key={cs.id} id={cs.id} className="scroll-mt-24 border-t border-border py-24 lg:py-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-10">
             <div className="reveal mb-14">
