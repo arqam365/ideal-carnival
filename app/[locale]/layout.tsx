@@ -9,6 +9,8 @@ import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
 import { Reveal } from '@/components/reveal-provider'
 import { DirectionSync } from '@/components/direction-sync'
+import { SmoothScroll } from '@/components/smooth-scroll'
+import { Cursor } from '@/components/cursor'
 import '../globals.css'
 
 const inter = Inter({
@@ -86,6 +88,8 @@ export default async function LocaleLayout({
     >
       <body className="font-sans antialiased">
         <NextIntlClientProvider messages={messages}>
+          <SmoothScroll />
+          <Cursor />
           <DirectionSync />
           <Reveal />
           <SiteHeader />

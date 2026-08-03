@@ -98,6 +98,12 @@
   h4 {
     @apply font-heading;
   }
+
+  /* Custom thin gold scrollbar */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 }
 
 @layer utilities {
@@ -107,15 +113,46 @@
   .tracking-luxury {
     letter-spacing: 0.18em;
   }
-  /* Slow elegant reveal on scroll */
+
+  /* ── Reveal system ─────────────────────────────────────────────────────────
+     GSAP in reveal-provider handles animation (opacity + y).
+     CSS only provides the pre-JS hidden state so elements don't flash.
+     .is-visible is a post-animation class; no-JS fallback restores visibility.
+  ── */
   .reveal {
     opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+  }
+
+  /* ── Custom cursor ─────────────────────────────────────────────────────── */
+  .custom-cursor,
+  .custom-cursor * {
+    cursor: none !important;
+  }
+
+  /* ── Marquee ───────────────────────────────────────────────────────────── */
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-33.333%); }   /* 3× content → move by 1/3 */
+  }
+
+  .marquee-track {
+    animation: marquee 38s linear infinite;
+    will-change: transform;
+  }
+
+  /* Pause on hover for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+
+  /* ── Hover transitions — all interactive elements ──────────────────────── */
+  a, button {
+    transition-property: color, background-color, border-color, opacity, transform, box-shadow;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }
