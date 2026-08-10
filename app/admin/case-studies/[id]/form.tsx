@@ -61,8 +61,15 @@ export default function CaseStudyForm({ item }: { item: CaseStudy | null }) {
         <label className={label}>Sector</label>
         <select name="sector" defaultValue={item?.sector ?? 'Government'} required className={input}>
           <option>Government</option>
+          <option>Diplomatic &amp; International Relations</option>
           <option>Hospitality</option>
+          <option>Tourism</option>
+          <option>Aviation</option>
+          <option>Healthcare</option>
           <option>Defense</option>
+          <option>Corporate</option>
+          <option>Education</option>
+          <option>Luxury Retail</option>
         </select>
       </div>
       <div>

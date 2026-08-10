@@ -8,6 +8,7 @@ import * as schema from './schema'
 const sql = neon(process.env.DATABASE_URL!)
 const db = drizzle(sql, { schema })
 
+// NOTE: Run only on a fresh DB or after clearing faculty/programs tables. Uses onConflictDoNothing.
 async function seed() {
   console.log('Seeding database...')
 
@@ -24,14 +25,24 @@ async function seed() {
   ]).onConflictDoNothing()
   console.log('✓ Insights')
 
-  // Faculty
+  // Faculty — confirmed founders only
   await db.insert(schema.faculty).values([
-    { name: 'Dr. Noura Al-Harbi', title: 'Director of Protocol Studies', specialisation: ['Diplomatic Protocol', 'State Ceremonies', 'International Relations'], bio: 'Dr. Al-Harbi served for over two decades as a senior protocol advisor to three Saudi government ministries, managing state visits, diplomatic receptions, and international summits at the highest level.', credentials: ['PhD International Relations, Sciences Po Paris', 'Former Senior Protocol Advisor, Council of Ministers', 'Certified Diplomatic Protocol Specialist, CPD London'], sortOrder: 1 },
-    { name: 'Brigadier (Ret.) Khalid Al-Otaibi', title: 'Head of Military Protocol', specialisation: ['Military Ceremonial', 'Defense Protocol', 'Command Conduct'], bio: 'Following a distinguished 30-year career in the Saudi Armed Forces, Brigadier Al-Otaibi led the development of ceremonial standards for national events, royal visits, and international defense forums.', credentials: ['Brigadier General, Royal Saudi Land Forces (Ret.)', 'Graduate, Higher Defense Studies College, Riyadh', 'Former Chief of Ceremonial, Joint Command HQ'], sortOrder: 2 },
-    { name: 'Sophia Laurent', title: 'Senior Faculty, Hospitality Excellence', specialisation: ['Five-Star Service', 'VIP & Royal Guest Protocol', 'Luxury Hospitality'], bio: 'A graduate of École Hôtelière de Lausanne, Sophia spent fifteen years leading guest experience at three Michelin-recommended properties across Europe and the Middle East.', credentials: ['Bachelor of Science in Hospitality, EHL Lausanne', 'Certified Hotel Professional, Leading Hotels of the World', 'Former Director of Guest Relations, Ritz-Carlton Riyadh'], sortOrder: 3 },
-    { name: 'Eng. Tariq Al-Mansouri', title: 'Faculty Lead, Customer Experience & Service Design', specialisation: ['Customer Experience Strategy', 'Service Culture Transformation', 'Government Excellence'], bio: 'Tariq has led large-scale service transformation programs for four Saudi government authorities and two international airlines, integrating behavioural science, journey design, and cultural values into measurable service standards.', credentials: ['MSc Service Design, Royal College of Art, London', 'Certified Customer Experience Professional (CCXP)', 'Former VP Customer Experience, Saudi National Airlines'], sortOrder: 4 },
-    { name: 'H.E. (Ret.) Ambassador Faisal Al-Ghamdi', title: 'Distinguished Faculty, International Protocol', specialisation: ['Diplomatic Etiquette', 'International Summits', 'Bilateral Relations'], bio: 'Ambassador Al-Ghamdi served in five diplomatic postings across Europe, Asia, and North America during a 28-year diplomatic career, including G20 summits and bilateral state visits.', credentials: ['Former Saudi Ambassador to France and UNESCO', 'MA Diplomatic Studies, Fletcher School, Tufts University', 'Fellow, Diplomatic Academy of Vienna'], sortOrder: 5 },
-    { name: 'Lina Al-Zahrani', title: 'Faculty, Executive Presence & Professional Image', specialisation: ['Executive Presence', 'Professional Conduct', 'Leadership Bearing'], bio: 'Lina specialises in developing the physical and behavioural dimensions of executive presence — posture, movement, dress, voice, and composure under pressure. She has coached over 400 senior Saudi executives.', credentials: ['Executive Coaching Certification, ICF-Accredited Program', 'Certified Image Consultant, AICI', 'BA Communications, King Saud University'], sortOrder: 6 },
+    {
+      name: 'Dr. Saud bin Suleiman',
+      title: 'Co-Founder',
+      specialisation: ['Business Management', 'International Protocol', 'Diplomatic Conduct', 'Higher Education'],
+      bio: 'Dr. Saud bin Suleiman holds a Doctorate in Business Administration and is a former diplomat who served at the Embassy of the Kingdom of Saudi Arabia in the United Kingdom. He currently works as a business development consultant and is a co-founder of EHP Academy in Saudi Arabia. Dr. Saud specialises in business management and development and has approximately 18 years of experience in higher education. His professional interests include quality management, strategy implementation, business analysis, performance evaluation, relationship development, international protocol, etiquette and diplomatic conduct.',
+      credentials: ['Doctorate in Business Administration', 'Former Diplomat, Embassy of Saudi Arabia in the United Kingdom', '18 years of experience in higher education'],
+      sortOrder: 1,
+    },
+    {
+      name: 'Dr. Wafa Jilani',
+      title: 'Co-Founder',
+      specialisation: ['Quality Management', 'Healthcare Administration', 'Protocol & Etiquette'],
+      bio: "Dr. Wafa Jilani is a general physician who holds a master's degree in quality management. She is a businesswoman and a co-founder of EHP Academy in Saudi Arabia. She manages a group of family-owned medical companies and specialises in quality management and healthcare administration. She also has a strong interest in protocol, etiquette and professional conduct. Her ambition is to introduce protocol and etiquette education across different sectors in Saudi Arabia, beginning with general education and continuing through higher education, professional development and employment.",
+      credentials: ["General Physician", "Master's Degree in Quality Management", 'Co-founder, EHP Academy'],
+      sortOrder: 2,
+    },
   ]).onConflictDoNothing()
   console.log('✓ Faculty')
 

@@ -28,9 +28,9 @@
     "insights": "Insights",
     "contact": "Contact",
     "riyadh": "Riyadh",
-    "address": "King Fahd Road, Olaya District, Riyadh, Saudi Arabia",
+    "address": "Riyadh, Saudi Arabia",
     "email": "engage@ehpacademy.sa",
-    "phone": "+966 11 200 0000",
+    "phone": "",
     "copyright": "EHP Academy. All rights reserved.",
     "vision2030": "Aligned with Saudi Vision 2030",
     "privacyPolicy": "Privacy Policy",
@@ -64,16 +64,8 @@
       "cta2": "Explore Programs"
     },
     "trust": {
-      "label": "Trusted by leading Saudi institutions",
-      "partners": [
-        "Ministry of Hospitality",
-        "General Authority of Civil Aviation",
-        "Saudi Tourism Authority",
-        "Saudi Railways",
-        "Royal Commission for AlUla",
-        "King Abdulaziz International Airport",
-        "Diriyah Gate Development Authority"
-      ]
+      "label": "Serving professionals across Saudi Arabia's key sectors",
+      "partners": []
     },
     "solutions": {
       "eyebrow": "What We Build",
@@ -163,14 +155,8 @@
       "explore": "Explore all industries"
     },
     "impact": {
-      "eyebrow": "Our Impact",
-      "title": "Excellence, measured",
-      "stats": [
-        { "value": "240+", "label": "Institutions Served" },
-        { "value": "18,500+", "label": "Professionals Developed" },
-        { "value": "10", "label": "Industries" },
-        { "value": "24", "label": "Countries" }
-      ]
+      "eyebrow": "Our Commitment",
+      "title": "Excellence from the first engagement"
     },
     "partners": {
       "eyebrow": "International Partnerships",
@@ -189,46 +175,41 @@
     },
     "story": {
       "eyebrow": "Our Story",
-      "title": "Founded to professionalize service at a national level",
-      "p1": "EHP Academy was established with a singular conviction: that the way a nation welcomes, hosts, and represents itself is a strategic asset. As Saudi Arabia opens to the world, the demand for refined, consistent, and culturally rooted service excellence has never been greater.",
-      "p2": "We bring together the discipline of diplomatic protocol, the warmth of Saudi hospitality, and the rigor of executive education. Our work spans ministries, military commands, airports, hospitals, and Fortune 500 enterprises — each engagement designed around the institution it serves.",
-      "p3": "The result is a generation of Saudi professionals who carry themselves, and the Kingdom, with quiet confidence on any stage.",
-      "stats": [
-        { "value": "240+", "label": "Institutions Served" },
-        { "value": "18,500+", "label": "Professionals Developed" },
-        { "value": "10", "label": "Industries" },
-        { "value": "24", "label": "Countries" }
-      ]
+      "title": "Founded to address Saudi Arabia's growing demand for excellence",
+      "p1": "EHP Academy was conceived in response to Saudi Arabia's growing demand for highly qualified professionals in protocol, executive hospitality, etiquette and premium service. As Saudi Arabia welcomes international delegations and expands its hospitality, tourism and major-events sectors, organisations require professionals who can represent them with confidence, cultural awareness and internationally informed standards of conduct.",
+      "p2": "EHP is designed as a centre of excellence, combining academic rigour, practical application and cultural intelligence. Our programmes serve government entities, diplomatic missions, private-sector executives, hospitality organisations and graduates seeking specialist professional qualifications.",
+      "p3": "Aligned with Saudi Vision 2030, EHP aims to develop human capital that meets global standards while honouring Saudi identity, values and professional requirements."
     },
     "vision": {
       "eyebrow": "Vision",
-      "text": "To be the defining institution for service, hospitality, and protocol excellence in the Kingdom and the region."
+      "text": "To become a leading regional centre of excellence for executive hospitality, protocol and etiquette education, recognised for developing professionals who represent Saudi Arabia and their organisations with distinction on the national and international stage."
     },
     "mission": {
       "eyebrow": "Mission",
-      "text": "To develop Saudi professionals whose conduct meets global standards while honoring Saudi values — in every interaction, at every level."
+      "text": "To develop confident, culturally intelligent and highly capable professionals through specialised education in executive hospitality, protocol, etiquette and service excellence, combining international best practices with Saudi values and ambitions."
     },
     "values": {
       "eyebrow": "Our Values",
       "title": "The principles behind every engagement",
       "items": [
-        { "title": "Honor", "body": "We treat every interaction as a representation of the Kingdom's dignity and reputation." },
-        { "title": "Generosity", "body": "Authentic Saudi hospitality is the heart of everything we teach and practice." },
-        { "title": "Precision", "body": "Protocol is exact. We pursue flawless execution in every detail and sequence." },
-        { "title": "Discretion", "body": "We operate with the confidentiality and composure expected at the highest levels." },
-        { "title": "Excellence", "body": "We benchmark against the finest institutions in the world — and aim higher." },
-        { "title": "Stewardship", "body": "We build lasting national capability, not short-term training outcomes." }
+        { "title": "Excellence", "body": "Maintaining exceptional standards in education, conduct and service." },
+        { "title": "Integrity", "body": "Acting with professionalism, discretion and ethical responsibility." },
+        { "title": "Cultural Intelligence", "body": "Respecting Saudi identity while understanding international cultures and practices." },
+        { "title": "Elegance", "body": "Demonstrating refinement, confidence and attention to detail." },
+        { "title": "Hospitality", "body": "Creating meaningful experiences through generosity, respect and care." },
+        { "title": "Professionalism", "body": "Preparing individuals to represent their organisations with competence and credibility." },
+        { "title": "Continuous Development", "body": "Encouraging lifelong learning and professional growth." },
+        { "title": "Saudi Identity", "body": "Adapting international practices in a manner that respects national culture and values." }
       ]
     },
     "timeline": {
       "eyebrow": "Our Journey",
       "title": "A measured path to becoming an institution",
       "items": [
-        { "year": "2018", "title": "Founding vision", "body": "EHP is established to professionalize service, hospitality, and protocol across Saudi institutions." },
-        { "year": "2020", "title": "International alignment", "body": "Partnerships formed with global hospitality and protocol bodies to benchmark standards." },
-        { "year": "2022", "title": "Government & defense mandate", "body": "Programs expand to ministries, authorities, and military commands at national scale." },
-        { "year": "2024", "title": "Vision 2030 acceleration", "body": "EHP becomes a recognized partner in the Kingdom's human-capability ambitions." },
-        { "year": "Today", "title": "The institution", "body": "A respected house of excellence shaping how Saudi Arabia is represented to the world." }
+        { "year": "2026", "title": "Establishment", "body": "EHP Academy is founded in Riyadh as a specialised institution for executive hospitality, protocol and etiquette education." },
+        { "year": "2026", "title": "Programme Development", "body": "Curriculum developed across diplomas and professional certificates, benchmarked against international quality standards." },
+        { "year": "2027", "title": "First Cohorts", "body": "First programmes delivered to government, corporate and hospitality sector participants in Saudi Arabia." },
+        { "year": "Forward", "title": "Regional Leadership", "body": "Establishing EHP as the leading regional centre for protocol, etiquette and executive hospitality education." }
       ]
     },
     "leadership": {
@@ -332,7 +313,10 @@
       { "id": "healthcare", "label": "Healthcare", "challenge": "Patient dignity and compassionate communication are as vital as clinical care.", "solution": "Patient-experience and compassionate-service conduct programs.", "outcome": "Care environments where patients feel respected and reassured." },
       { "id": "education", "label": "Education", "challenge": "Institutions shape future leaders and must model professional conduct.", "solution": "Etiquette, presence, and service-leadership curricula for faculty and students.", "outcome": "Graduates who carry themselves with confidence and grace." },
       { "id": "financial-services", "label": "Financial Services", "challenge": "Client trust is built on discretion, composure, and impeccable conduct.", "solution": "Executive presence and high-net-worth client relationship etiquette.", "outcome": "Advisor relationships defined by trust and professionalism." },
-      { "id": "luxury-retail", "label": "Luxury Retail", "challenge": "Discerning clients expect a service ritual that matches the brand promise.", "solution": "Clienteling, VIP service, and luxury-floor etiquette programs.", "outcome": "Boutique experiences that convert clients into patrons." }
+      { "id": "luxury-retail", "label": "Luxury Retail", "challenge": "Discerning clients expect a service ritual that matches the brand promise.", "solution": "Clienteling, VIP service, and luxury-floor etiquette programs.", "outcome": "Boutique experiences that convert clients into patrons." },
+      { "id": "diplomatic", "label": "Diplomatic & International Relations", "challenge": "Diplomatic missions require precise adherence to international protocol alongside deep cultural awareness.", "solution": "Diplomatic conduct and cross-border etiquette programmes tailored to mission environments.", "outcome": "Confident, correct conduct in bilateral and multilateral settings." },
+      { "id": "event-management", "label": "Event Management", "challenge": "High-profile events demand flawless protocol management and exceptional guest experience.", "solution": "Event protocol planning, ceremonial sequencing, and VIP guest management programmes.", "outcome": "Events that reflect the standards of the institutions behind them." },
+      { "id": "private-household", "label": "Private Household & Estate Services", "challenge": "Private households serving high-net-worth and royal principals require the highest service standards.", "solution": "Household management, butler standards, and private hospitality excellence programmes.", "outcome": "Household teams that operate with discretion, skill and quiet elegance." }
     ]
   },
   "programs": {
@@ -468,6 +452,19 @@
     "ctaTitle": "Engage the institution that thinks deeply about excellence",
     "ctaBody": "These perspectives emerge from practice, not research alone. Speak to our advisors about how they apply to your institution."
   },
+  "faq": {
+    "eyebrow": "Frequently Asked Questions",
+    "title": "Common questions about EHP Academy",
+    "items": [
+      { "q": "What is EHP Academy?", "a": "EHP Academy is a specialised educational and professional-development institution being established in Riyadh to provide programmes in executive hospitality, protocol, etiquette, cross-cultural communication and service excellence." },
+      { "q": "Who are EHP's programmes designed for?", "a": "Programmes are intended for government professionals, diplomats, executives, hospitality leaders, luxury-service professionals, corporate teams and graduates seeking specialist professional development." },
+      { "q": "Are programmes available in Arabic and English?", "a": "EHP intends to offer programmes in Arabic and English, depending on the programme and faculty. Final language arrangements will be specified for each course." },
+      { "q": "Does EHP provide customised organisational training?", "a": "EHP intends to design tailored programmes for government entities, corporations, hotels, diplomatic organisations and other institutions." },
+      { "q": "Will EHP offer internationally delivered programmes?", "a": "EHP intends to work with international institutions and practitioners and may offer selected study visits or international programmes. Availability will depend on confirmed agreements." },
+      { "q": "Are EHP's programmes accredited?", "a": "Accreditation and certification will vary by programme. Only officially approved information will be published and stated clearly on the relevant programme page." },
+      { "q": "Where is EHP located?", "a": "EHP is being established in Riyadh, Saudi Arabia. The complete address will be published once the premises are officially confirmed." }
+    ]
+  },
   "legal": {
     "privacy": {
       "meta": { "title": "Privacy Policy", "description": "EHP Academy privacy policy — how we collect, use, and protect your information." },
@@ -512,8 +509,8 @@
     "formIntro": "All enquiries are handled in strict confidence by a senior EHP advisor. We typically respond within one business day.",
     "officeEyebrow": "Riyadh Office",
     "institutionName": "EHP Academy",
-    "addressLine1": "King Fahd Road, Olaya District",
-    "addressLine2": "Riyadh, Saudi Arabia",
+    "addressLine1": "Riyadh",
+    "addressLine2": "Saudi Arabia",
     "directContact": "Direct Contact",
     "enquiries": "Enquiries",
     "telephone": "Telephone",

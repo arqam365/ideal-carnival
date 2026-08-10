@@ -23,6 +23,7 @@ export default function FacultyForm({ item }: { item: Faculty | null }) {
       specialisation: (fd.get('specialisation') as string).split('\n').map(s => s.trim()).filter(Boolean),
       bio: fd.get('bio'),
       credentials: (fd.get('credentials') as string).split('\n').map(s => s.trim()).filter(Boolean),
+      imageUrl: fd.get('imageUrl') || null,
       sortOrder: Number(fd.get('sortOrder')) || 0,
     }
     const res = await fetch('/api/admin/faculty', {
@@ -66,6 +67,10 @@ export default function FacultyForm({ item }: { item: Faculty | null }) {
       <div>
         <label className={label}>Credentials (one per line)</label>
         <textarea name="credentials" defaultValue={(item?.credentials ?? []).join('\n')} className={textarea} />
+      </div>
+      <div>
+        <label className={label}>Photo URL</label>
+        <input name="imageUrl" defaultValue={item?.imageUrl ?? ''} className={input} placeholder="https://..." />
       </div>
       <div>
         <label className={label}>Sort Order</label>

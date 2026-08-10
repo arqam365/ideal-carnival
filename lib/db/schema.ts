@@ -6,6 +6,8 @@ export const insights = pgTable('insights', {
   category: varchar('category', { length: 100 }).notNull(),
   title: text('title').notNull(),
   excerpt: text('excerpt').notNull(),
+  content: text('content'),
+  imageUrl: varchar('image_url', { length: 500 }),
   readTime: varchar('read_time', { length: 50 }).notNull(),
   date: varchar('date', { length: 50 }).notNull(),
   featured: boolean('featured').default(false).notNull(),
@@ -20,6 +22,7 @@ export const faculty = pgTable('faculty', {
   specialisation: json('specialisation').$type<string[]>().notNull(),
   bio: text('bio').notNull(),
   credentials: json('credentials').$type<string[]>().notNull(),
+  imageUrl: varchar('image_url', { length: 500 }),
   sortOrder: integer('sort_order').default(0).notNull(),
 })
 

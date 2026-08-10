@@ -72,10 +72,18 @@ export default function ProgramForm({ item }: { item: Program | null }) {
         <label className={label}>Industry</label>
         <select name="industry" defaultValue={item?.industry ?? 'Government'} required className={input}>
           <option>Government</option>
-          <option>Defense</option>
+          <option>Diplomatic &amp; International Relations</option>
           <option>Hospitality</option>
+          <option>Tourism</option>
           <option>Aviation</option>
-          <option>Financial Services</option>
+          <option>Luxury Retail</option>
+          <option>Banking &amp; Wealth Management</option>
+          <option>Healthcare</option>
+          <option>Event Management</option>
+          <option>Corporate</option>
+          <option>Education</option>
+          <option>Private Household Services</option>
+          <option>Entertainment &amp; Major Events</option>
         </select>
       </div>
       <div>

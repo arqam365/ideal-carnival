@@ -22,6 +22,8 @@ export default function InsightForm({ item }: { item: Insight | null }) {
       category: fd.get('category'),
       title: fd.get('title'),
       excerpt: fd.get('excerpt'),
+      content: fd.get('content') || null,
+      imageUrl: fd.get('imageUrl') || null,
       readTime: fd.get('readTime'),
       date: fd.get('date'),
       featured: fd.get('featured') === 'on',
@@ -64,6 +66,14 @@ export default function InsightForm({ item }: { item: Insight | null }) {
       <div>
         <label className={label}>Excerpt</label>
         <textarea name="excerpt" defaultValue={item?.excerpt ?? ''} required className={textarea} />
+      </div>
+      <div>
+        <label className={label}>Cover Image URL</label>
+        <input name="imageUrl" defaultValue={item?.imageUrl ?? ''} className={input} placeholder="https://..." />
+      </div>
+      <div>
+        <label className={label}>Full Article Content</label>
+        <textarea name="content" defaultValue={item?.content ?? ''} className={`${input} resize-y min-h-[300px]`} />
       </div>
       <div>
         <label className={label}>Read Time</label>
