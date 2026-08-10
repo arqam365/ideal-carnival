@@ -1,7 +1,7 @@
 import { desc } from 'drizzle-orm'
 import { db } from '@/lib/db'
 import { leads } from '@/lib/db/schema'
-import { requireAdmin } from './auth-guard'
+import { requireAdmin } from '@/app/admin/auth-guard'
 import { AdminDashboard } from './admin-dashboard'
 
 export default async function AdminPage() {

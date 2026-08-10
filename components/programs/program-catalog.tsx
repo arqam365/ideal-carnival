@@ -9,7 +9,7 @@ type Program = {
   id: string
   title: string
   category: string
-  level: 'Foundation' | 'Professional' | 'Executive'
+  level: 'Foundation' | 'Professional' | 'Advanced' | 'Executive'
   duration: string
   format: string
   overview: string
