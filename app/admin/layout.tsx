@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import Link from 'next/link'
+import '@/app/globals.css'
 
 const NAV = [
   { label: 'Dashboard', href: '/admin' },
