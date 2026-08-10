@@ -4,13 +4,19 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import type { Insight } from '@/lib/db/schema'
 
-const label = 'block text-sm font-medium text-gray-700 mb-1'
-const input = 'w-full rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500'
-const textarea = `${input} resize-y min-h-[80px]`
+const lbl = 'block text-xs font-semibold uppercase tracking-wider text-gray-500 mb-1.5'
+const inp = 'w-full rounded-lg border border-gray-300 px-4 py-2.5 text-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 focus:outline-none'
+const ta = `${inp} resize-y`
+
+function slugify(s: string) {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+}
 
 export default function InsightForm({ item }: { item: Insight | null }) {
   const router = useRouter()
   const [status, setStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
+  const [slug, setSlug] = useState(item?.slug ?? '')
+  const [imageUrl, setImageUrl] = useState(item?.imageUrl ?? '')
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -50,60 +56,138 @@ export default function InsightForm({ item }: { item: Insight | null }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <div>
-        <label className={label}>Slug</label>
-        <input name="slug" defaultValue={item?.slug ?? ''} required className={input} />
-      </div>
-      <div>
-        <label className={label}>Category</label>
-        <input name="category" defaultValue={item?.category ?? ''} required className={input} />
-      </div>
-      <div>
-        <label className={label}>Title</label>
-        <input name="title" defaultValue={item?.title ?? ''} required className={input} />
-      </div>
-      <div>
-        <label className={label}>Excerpt</label>
-        <textarea name="excerpt" defaultValue={item?.excerpt ?? ''} required className={textarea} />
-      </div>
-      <div>
-        <label className={label}>Cover Image URL</label>
-        <input name="imageUrl" defaultValue={item?.imageUrl ?? ''} className={input} placeholder="https://..." />
-      </div>
-      <div>
-        <label className={label}>Full Article Content</label>
-        <textarea name="content" defaultValue={item?.content ?? ''} className={`${input} resize-y min-h-[300px]`} />
-      </div>
-      <div>
-        <label className={label}>Read Time</label>
-        <input name="readTime" defaultValue={item?.readTime ?? ''} required className={input} />
-      </div>
-      <div>
-        <label className={label}>Date</label>
-        <input name="date" defaultValue={item?.date ?? ''} required className={input} />
-      </div>
-      <div className="flex gap-6">
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" name="featured" defaultChecked={item?.featured ?? false} />
-          Featured
-        </label>
-        <label className="flex items-center gap-2 text-sm">
-          <input type="checkbox" name="published" defaultChecked={item?.published ?? true} />
-          Published
-        </label>
-      </div>
-      <div className="flex items-center gap-4 pt-2">
-        <button type="submit" className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700">
-          {status === 'saving' ? 'Saving…' : 'Save'}
-        </button>
-        {item && (
-          <button type="button" onClick={handleDelete} className="rounded bg-red-600 px-4 py-2 text-sm text-white hover:bg-red-700">
-            Delete
-          </button>
-        )}
-        {status === 'saved' && <span className="text-sm text-green-600">Saved</span>}
-        {status === 'error' && <span className="text-sm text-red-600">Error — try again</span>}
+    <form onSubmit={handleSubmit}>
+      <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+        {/* Main column */}
+        <div className="flex-1 space-y-6 min-w-0">
+          {/* Core content card */}
+          <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm space-y-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Content</p>
+
+            <div>
+              <label className={lbl}>Title</label>
+              <input
+                name="title"
+                defaultValue={item?.title ?? ''}
+                required
+                className={inp}
+                onChange={(e) => { if (!item) setSlug(slugify(e.target.value)) }}
+              />
+            </div>
+
+            <div>
+              <label className={lbl}>Slug</label>
+              <input
+                name="slug"
+                value={slug}
+                required
+                className={inp}
+                onChange={(e) => setSlug(e.target.value)}
+              />
+            </div>
+
+            <div>
+              <label className={lbl}>Category</label>
+              <select name="category" defaultValue={item?.category ?? 'Perspectives'} required className={inp}>
+                <option>Perspectives</option>
+                <option>Analysis</option>
+                <option>Protocol Guide</option>
+                <option>Research</option>
+                <option>Industry Spotlight</option>
+              </select>
+            </div>
+
+            <div>
+              <label className={lbl}>Excerpt</label>
+              <textarea name="excerpt" defaultValue={item?.excerpt ?? ''} required className={ta} rows={3} />
+            </div>
+
+            <div>
+              <label className={lbl}>Full Article Content</label>
+              <textarea name="content" defaultValue={item?.content ?? ''} className={ta} rows={14} />
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar column */}
+        <div className="w-full lg:w-72 shrink-0 space-y-5">
+          {/* Status */}
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Status</p>
+
+            <label className="flex items-center justify-between cursor-pointer">
+              <span className="text-sm font-medium text-gray-700">Published</span>
+              <input type="checkbox" name="published" defaultChecked={item?.published ?? true} className="sr-only peer" />
+              <div className="relative h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-indigo-600 after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-all peer-checked:after:translate-x-5" />
+            </label>
+
+            <label className="flex items-center justify-between cursor-pointer">
+              <span className="text-sm font-medium text-gray-700">Featured</span>
+              <input type="checkbox" name="featured" defaultChecked={item?.featured ?? false} className="sr-only peer" />
+              <div className="relative h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-[#B8995D] after:absolute after:left-0.5 after:top-0.5 after:h-5 after:w-5 after:rounded-full after:bg-white after:shadow after:transition-all peer-checked:after:translate-x-5" />
+            </label>
+          </div>
+
+          {/* Meta */}
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Meta</p>
+
+            <div>
+              <label className={lbl}>Read Time</label>
+              <input name="readTime" defaultValue={item?.readTime ?? ''} required placeholder="5 min read" className={inp} />
+            </div>
+
+            <div>
+              <label className={lbl}>Date</label>
+              <input name="date" type="date" defaultValue={item?.date ?? ''} required className={inp} />
+            </div>
+          </div>
+
+          {/* Image */}
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-wider text-gray-400">Cover Image</p>
+
+            <div>
+              <label className={lbl}>Image URL</label>
+              <input
+                name="imageUrl"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="https://…"
+                className={inp}
+              />
+            </div>
+
+            {imageUrl && (
+              <img src={imageUrl} alt="Preview" className="w-full rounded-lg object-cover aspect-video" onError={(e) => (e.currentTarget.style.display = 'none')} />
+            )}
+          </div>
+
+          {/* Actions */}
+          <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm space-y-3">
+            <button
+              type="submit"
+              disabled={status === 'saving'}
+              className="w-full rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-colors disabled:opacity-60"
+              style={{ backgroundColor: '#B8995D' }}
+            >
+              {status === 'saving' ? 'Saving…' : item ? 'Save Changes' : 'Create Article'}
+            </button>
+
+            {item && (
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="w-full rounded-lg border border-red-300 px-6 py-2.5 text-sm font-semibold text-red-600 hover:bg-red-50 transition-colors"
+              >
+                Delete Article
+              </button>
+            )}
+
+            {status === 'saved' && <p className="text-center text-sm text-emerald-600">Saved successfully</p>}
+            {status === 'error' && <p className="text-center text-sm text-red-600">Error — please try again</p>}
+          </div>
+        </div>
       </div>
     </form>
   )
