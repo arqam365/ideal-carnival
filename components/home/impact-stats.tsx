@@ -48,7 +48,7 @@ function StatItem({ stat, run }: { stat: StatData; run: boolean }) {
 
 export function ImpactStats() {
   const t = useTranslations('home.impact')
-  const stats = t.raw('stats') as StatData[]
+  const stats = (t.raw('stats') ?? []) as StatData[]
 
   const ref = useRef<HTMLDivElement>(null)
   const [run, setRun] = useState(false)
