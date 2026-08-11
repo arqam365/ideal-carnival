@@ -124,8 +124,8 @@ export function SiteHeader() {
       className={cn(
         'fixed inset-x-0 top-0 z-50 transition-all duration-500',
         scrolled
-          ? 'h-16 bg-primary/95 backdrop-blur-md shadow-[0_1px_0_0_rgba(184,153,93,0.25)]'
-          : 'h-20 bg-transparent',
+          ? 'h-16 bg-primary/96 backdrop-blur-md border-b border-gold/15'
+          : 'h-20 bg-gradient-to-b from-primary/60 to-transparent backdrop-blur-[2px]',
       )}
       onMouseLeave={() => setOpenMenu(null)}
     >
@@ -135,7 +135,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center lg:flex">
           {NAV_KEYS.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
@@ -147,8 +147,8 @@ export function SiteHeader() {
                 <Link
                   href={item.href}
                   className={cn(
-                    'group relative flex items-center gap-1 whitespace-nowrap px-2 py-2 text-[0.72rem] font-medium uppercase tracking-luxury transition-colors',
-                    isActive ? 'text-gold' : 'text-primary-foreground/85 hover:text-gold',
+                    'group relative flex items-center gap-1 whitespace-nowrap px-2.5 py-2 text-[0.7rem] font-medium uppercase tracking-luxury transition-colors',
+                    isActive ? 'text-gold' : 'text-primary-foreground/70 hover:text-primary-foreground',
                   )}
                 >
                   {t(item.key)}
@@ -157,7 +157,7 @@ export function SiteHeader() {
                   )}
                   <span
                     className={cn(
-                      'absolute bottom-0.5 start-2 end-2 h-px bg-gold transition-transform duration-300',
+                      'absolute bottom-0 start-2.5 end-2.5 h-px bg-gold/70 transition-transform duration-300',
                       isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
                     )}
                   />
@@ -170,7 +170,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 border border-gold bg-gold px-5 py-2.5 text-[0.72rem] font-semibold uppercase tracking-luxury text-gold-foreground transition-colors hover:bg-transparent hover:text-gold"
+            className="inline-flex items-center gap-2 border border-gold/60 px-5 py-2 text-[0.7rem] font-semibold uppercase tracking-luxury text-gold/90 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-primary"
           >
             {t('requestConsultation')}
           </Link>
