@@ -29,7 +29,7 @@
     "contact": "Contact",
     "riyadh": "Riyadh",
     "address": "Riyadh, Saudi Arabia",
-    "email": "engage@ehpacademy.sa",
+    "email": "info@ehpacademy.com",
     "phone": "",
     "copyright": "EHP Academy. All rights reserved.",
     "vision2030": "Aligned with Saudi Vision 2030",
@@ -355,7 +355,7 @@
       "messageLabel": "Additional context (optional)",
       "submit": "Send Enquiry",
       "success": "Enquiry received. We will be in touch shortly.",
-      "error": "Something went wrong. Please email us at engage@ehpacademy.sa"
+      "error": "Something went wrong. Please email us at info@ehpacademy.com"
     }
   },
   "faculty": {
@@ -470,19 +470,19 @@
       "meta": { "title": "Privacy Policy", "description": "EHP Academy privacy policy — how we collect, use, and protect your information." },
       "eyebrow": "Legal",
       "title": "Privacy Policy",
-      "placeholder": "This Privacy Policy will be updated with EHP Academy's official content prior to launch. For enquiries regarding data privacy, please contact us at engage@ehpacademy.sa."
+      "placeholder": "This Privacy Policy will be updated with EHP Academy's official content prior to launch. For enquiries regarding data privacy, please contact us at info@ehpacademy.com."
     },
     "terms": {
       "meta": { "title": "Terms & Conditions", "description": "EHP Academy terms and conditions governing use of this website and our services." },
       "eyebrow": "Legal",
       "title": "Terms & Conditions",
-      "placeholder": "These Terms & Conditions will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at engage@ehpacademy.sa."
+      "placeholder": "These Terms & Conditions will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at info@ehpacademy.com."
     },
     "cookies": {
       "meta": { "title": "Cookie Policy", "description": "EHP Academy cookie policy — how we use cookies and similar technologies on this website." },
       "eyebrow": "Legal",
       "title": "Cookie Policy",
-      "placeholder": "This Cookie Policy will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at engage@ehpacademy.sa."
+      "placeholder": "This Cookie Policy will be updated with EHP Academy's official content prior to launch. For enquiries, please contact us at info@ehpacademy.com."
     }
   },
   "contact": {
