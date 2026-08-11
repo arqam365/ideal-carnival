@@ -16,7 +16,7 @@ const TYPE_COLORS: Record<string, string> = {
   'General': 'bg-gray-100 text-gray-600',
 }
 
-export function AdminDashboard({ leads, revalidateSecret }: { leads: Lead[]; revalidateSecret: string }) {
+export function AdminDashboard({ leads }: { leads: Lead[] }) {
   const router = useRouter()
   const [flushStatus, setFlushStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle')
   const [expandedRow, setExpandedRow] = useState<number | null>(null)
@@ -24,7 +24,7 @@ export function AdminDashboard({ leads, revalidateSecret }: { leads: Lead[]; rev
   async function flushCache() {
     setFlushStatus('loading')
     try {
-      const res = await fetch(`/api/revalidate?secret=${revalidateSecret}`)
+      const res = await fetch('/api/admin/flush-cache', { method: 'POST' })
       setFlushStatus(res.ok ? 'ok' : 'error')
       setTimeout(() => setFlushStatus('idle'), 4000)
     } catch {
@@ -74,8 +74,7 @@ export function AdminDashboard({ leads, revalidateSecret }: { leads: Lead[]; rev
           <p className="mt-1 text-sm text-gray-500">Welcome back — here&apos;s what&apos;s happening at EHP Academy.</p>
         </div>
         <div className="flex items-center gap-2.5">
-          {revalidateSecret && (
-            <button
+          <button
               onClick={flushCache}
               disabled={flushStatus === 'loading'}
               className={`inline-flex items-center gap-2 rounded-lg border px-4 py-2 text-sm font-medium transition-colors disabled:opacity-60 ${
@@ -87,7 +86,6 @@ export function AdminDashboard({ leads, revalidateSecret }: { leads: Lead[]; rev
               <RefreshCw className={`h-3.5 w-3.5 ${flushStatus === 'loading' ? 'animate-spin' : ''}`} />
               {flushStatus === 'loading' ? 'Flushing…' : flushStatus === 'ok' ? 'Cache flushed' : flushStatus === 'error' ? 'Failed' : 'Flush Cache'}
             </button>
-          )}
           <button
             onClick={logout}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"

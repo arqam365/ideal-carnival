@@ -21,7 +21,5 @@ export default async function AdminPage() {
     message: l.message ?? '',
   }))
 
-  const revalidateSecret = process.env.REVALIDATE_SECRET ?? ''
-
-  return <AdminDashboard leads={leadsData} revalidateSecret={revalidateSecret} />
+  return <AdminDashboard leads={leadsData} />
 }
