@@ -42,6 +42,7 @@ export async function POST(req: NextRequest) {
     sameSite: 'strict',
     maxAge: MAX_AGE,
     path: '/admin',
+    ...(process.env.NODE_ENV === 'production' && { domain: 'ehpacademy.com' }),
   })
   return NextResponse.json({ ok: true })
 }

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { db } from '@/lib/db'
 import { leads } from '@/lib/db/schema'
+import { appendLeadToSheet } from '@/lib/google-sheets'
 
 // In-memory rate limiter: max 5 submissions per IP per 10 minutes
 const submissions = new Map<string, { count: number; resetAt: number }>()
@@ -57,6 +58,9 @@ export async function POST(req: NextRequest) {
 
   try {
     await db.insert(leads).values(safe)
+
+    // Fire-and-forget — never block the response
+    appendLeadToSheet(safe).catch(() => {})
 
     if (process.env.RESEND_API_KEY && process.env.NOTIFICATION_EMAIL) {
       await fetch('https://api.resend.com/emails', {

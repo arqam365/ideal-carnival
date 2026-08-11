@@ -39,7 +39,7 @@ const cairo = Cairo({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ehpacademy.sa'),
+  metadataBase: new URL('https://ehpacademy.com'),
   title: {
     default: 'EHP Academy — House of Etiquette, Hospitality & Protocol | Saudi Arabia',
     template: '%s | EHP Academy',
@@ -47,12 +47,25 @@ export const metadata: Metadata = {
   description:
     'EHP Academy develops Saudi Arabia\'s next generation of service leaders through executive education in protocol, etiquette, hospitality excellence, and government & military service standards.',
   keywords: ['protocol training Saudi Arabia', 'hospitality excellence academy', 'executive presence', 'government excellence', 'military protocol', 'Saudi Vision 2030'],
+  alternates: {
+    languages: {
+      'en': '/en',
+      'ar': '/ar',
+    },
+  },
   openGraph: {
     title: 'EHP Academy — House of Etiquette, Hospitality & Protocol',
     description: 'Developing Saudi Arabia\'s next generation of service leaders. Global standards. Saudi values. Exceptional service.',
     type: 'website',
     locale: 'en_US',
+    alternateLocale: 'ar_SA',
     siteName: 'EHP Academy',
+    url: 'https://ehpacademy.com',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'EHP Academy — House of Etiquette, Hospitality & Protocol',
+    description: 'Developing Saudi Arabia\'s next generation of service leaders.',
   },
   icons: {
     icon: [

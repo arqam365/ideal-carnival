@@ -92,7 +92,7 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
                 </div>
               </div>
               <div className="relative hidden overflow-hidden border border-gold/20 lg:col-span-5 lg:block">
-                <Image src="/images/insights-feature.png" alt="Protocol and soft power" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover opacity-70" />
+                <Image src="/images/training-conference.jpg" alt="EHP Academy training conference" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover opacity-70" />
               </div>
             </div>
           </div>

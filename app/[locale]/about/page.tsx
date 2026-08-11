@@ -34,7 +34,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
           <div className="reveal space-y-10 lg:col-span-5">
             <SectionHeading eyebrow={t('story.eyebrow')} title={t('story.title')} />
             <div className="relative aspect-[4/3] overflow-hidden border border-border">
-              <Image src="/images/about-leadership.png" alt="EHP Academy leadership" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
+              <Image src="/images/training-workshop.jpg" alt="EHP Academy training session" fill sizes="(max-width: 1024px) 100vw, 42vw" className="object-cover" />
             </div>
           </div>
           <div className="reveal space-y-6 text-base leading-relaxed text-muted-foreground lg:col-span-7 lg:pt-4">
@@ -97,7 +97,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
       </section>
 
       <section className="relative isolate overflow-hidden">
-        <Image src="/images/executive-presence.png" alt="" fill sizes="100vw" className="-z-10 object-cover" />
+        <Image src="/images/training-group-outdoor.jpg" alt="" fill sizes="100vw" className="-z-10 object-cover" />
         <div className="absolute inset-0 -z-10 bg-primary/85" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-10 lg:py-32">
           <div className="max-w-3xl reveal">

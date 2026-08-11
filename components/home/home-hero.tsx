@@ -57,8 +57,8 @@ export function HomeHero() {
     >
       <Image
         ref={imageRef}
-        src="/images/hero-protocol.png"
-        alt="EHP Academy diplomatic reception hall with hospitality staff in formal poise"
+        src="/images/protocol-meeting.jpg"
+        alt="EHP Academy Saudi professionals in formal protocol greeting"
         fill
         priority
         sizes="100vw"

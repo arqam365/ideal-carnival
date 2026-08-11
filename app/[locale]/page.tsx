@@ -19,12 +19,34 @@ import { ImpactStats } from '@/components/home/impact-stats'
 import { ConsultationCTA } from '@/components/consultation-cta'
 import { Reveal } from '@/components/reveal'
 
+const orgJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'EducationalOrganization',
+  name: 'EHP Academy',
+  alternateName: 'House of Etiquette, Hospitality & Protocol',
+  url: 'https://ehpacademy.com',
+  logo: 'https://ehpacademy.com/ehp-logo.png',
+  description: 'EHP Academy develops Saudi Arabia\'s next generation of service leaders through executive education in protocol, etiquette, and hospitality excellence.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'SA',
+  },
+  email: 'info@ehpacademy.com',
+  foundingDate: '2026',
+  areaServed: 'SA',
+  educationalCredentialAwarded: 'Diploma',
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params
   setRequestLocale(locale)
 
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+      />
       <HomeHero />
       <Reveal><TrustBar /></Reveal>
       <Reveal><PartnersStrip /></Reveal>

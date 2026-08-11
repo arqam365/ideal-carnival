@@ -21,7 +21,7 @@ export async function ConsultationCTA({
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="relative isolate overflow-hidden border border-gold/30 bg-primary px-8 py-16 lg:px-16 lg:py-20">
           <Image
-            src="/images/executive-presence.png"
+            src="/images/training-classroom.jpg"
             alt=""
             aria-hidden
             fill

@@ -9,8 +9,8 @@ export async function VisionBand() {
   return (
     <section className="relative isolate overflow-hidden">
       <Image
-        src="/images/hospitality.png"
-        alt="Saudi hospitality service with traditional Arabic coffee"
+        src="/images/hospitality-interior.jpg"
+        alt="Luxury Saudi hospitality interior with Islamic arch design"
         fill
         sizes="100vw"
         className="-z-10 object-cover"
