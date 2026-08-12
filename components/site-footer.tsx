@@ -1,8 +1,8 @@
 'use client'
 
+import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/navigation'
-import { Wordmark } from '@/components/wordmark'
 
 export function SiteFooter() {
   const t = useTranslations('footer')
@@ -36,7 +36,13 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid gap-12 border-b border-gold/15 py-16 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <Wordmark className="text-primary-foreground" showTagline />
+            <Image
+              src="/images/ehp-logo.png"
+              alt="EHP Academy — House of Etiquette, Hospitality & Protocol"
+              width={180}
+              height={199}
+              className="w-36 lg:w-44"
+            />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-primary-foreground/60">
               {t('tagline')}
             </p>

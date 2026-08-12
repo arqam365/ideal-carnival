@@ -13,8 +13,8 @@ export function Wordmark({
       <Image
         src="/images/ehp-icon.png"
         alt=""
-        width={36}
-        height={36}
+        width={40}
+        height={40}
         className="shrink-0"
         aria-hidden="true"
         priority
@@ -25,8 +25,8 @@ export function Wordmark({
           <span className="ml-1.5 text-[color:var(--gold)]">Academy</span>
         </span>
         {showTagline ? (
-          <span className="mt-1 text-[0.6rem] uppercase tracking-luxury opacity-70">
-            Etiquette · Hospitality · Protocol
+          <span className="mt-1 text-[0.6rem] uppercase tracking-luxury opacity-60">
+            House of Etiquette · Hospitality · Protocol
           </span>
         ) : null}
       </span>
