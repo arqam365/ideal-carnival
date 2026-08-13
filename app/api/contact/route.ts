@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
 
       // 1. Notify EHP — reply-to is set to enquirer's email so EHP can reply directly
       await sendEmail({
-        from: 'EHP Academy Website <info@ehpacademy.com>',
+        from: 'EHP Academy Website <noreply@ehpacademy.com>',
         to: [notifyEmail],
         replyTo: safe.email,
         subject: `New Consultation Enquiry — ${safe.name}${safe.institution ? ` · ${safe.institution}` : ''}`,
