@@ -1,5 +1,6 @@
 import { requireAdmin } from '@/app/admin/auth-guard'
 import { BookOpen, FileText, GraduationCap, Users, Briefcase, BarChart2, CheckCircle, AlertCircle, Info } from 'lucide-react'
+import { SetupSheetButton } from './setup-sheet-button'
 
 export default async function GuidePage() {
   await requireAdmin()
@@ -113,7 +114,12 @@ export default async function GuidePage() {
           { n: 2, title: 'Read the lead details', body: 'Each row shows: name, organisation, email, phone, enquiry type, country, and message. Click any row to expand the full message.' },
           { n: 3, title: 'Follow up', body: 'Respond to leads directly by emailing the enquirer. All leads are also automatically saved to the EHP Academy Google Sheet for tracking.' },
         ]} />
-        <Note type="info">Leads are stored in the database and the Google Sheet simultaneously. The Google Sheet is at: <strong>docs.google.com/spreadsheets/d/15X_9a0G…</strong> — share it with team members who need access.</Note>
+        <Note type="info">Leads are stored in the database and the Google Sheet simultaneously. Share the Google Sheet with team members who need access.</Note>
+        <div className="rounded-xl border border-gray-200 bg-white p-5 shadow-sm">
+          <p className="text-sm font-semibold text-gray-900 mb-1">Google Sheet Setup</p>
+          <p className="text-xs text-gray-500 mb-4">Run this once to create the header row and apply EHP styling. Safe to re-run — it only reformats, never deletes data.</p>
+          <SetupSheetButton />
+        </div>
       </Section>
 
       <hr className="border-gray-200" />

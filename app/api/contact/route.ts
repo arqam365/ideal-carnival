@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
 
   try {
     await db.insert(leads).values(safe)
-    appendLeadToSheet(safe).catch(() => {})
+    appendLeadToSheet(safe).catch((err) => console.error('[Sheets] lead append failed:', err))
 
     if (process.env.RESEND_API_KEY) {
       const notifyEmail = process.env.NOTIFICATION_EMAIL ?? 'info@ehpacademy.com'
