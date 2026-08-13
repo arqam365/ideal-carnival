@@ -28,7 +28,7 @@
     "insights": "Insights",
     "contact": "Contact",
     "riyadh": "Riyadh",
-    "address": "Riyadh, Saudi Arabia",
+    "address": "3130 Abdulrazzaq Al Hashimi St, King Salman District, Riyadh 12444, Saudi Arabia",
     "email": "info@ehpacademy.com",
     "phone": "",
     "copyright": "EHP Academy. All rights reserved.",
@@ -474,7 +474,7 @@
       { "q": "Does EHP provide customised organisational training?", "a": "EHP intends to design tailored programmes for government entities, corporations, hotels, diplomatic organisations and other institutions." },
       { "q": "Will EHP offer internationally delivered programmes?", "a": "EHP intends to work with international institutions and practitioners and may offer selected study visits or international programmes. Availability will depend on confirmed agreements." },
       { "q": "Are EHP's programmes accredited?", "a": "Accreditation and certification will vary by programme. Only officially approved information will be published and stated clearly on the relevant programme page." },
-      { "q": "Where is EHP located?", "a": "EHP is being established in Riyadh, Saudi Arabia. The complete address will be published once the premises are officially confirmed." }
+      { "q": "Where is EHP located?", "a": "EHP Academy is located at 3130 Abdulrazzaq Al Hashimi St, King Salman District, Riyadh 12444, Kingdom of Saudi Arabia." }
     ]
   },
   "legal": {
@@ -521,8 +521,8 @@
     "formIntro": "All enquiries are handled in strict confidence by a senior EHP advisor. We typically respond within one business day.",
     "officeEyebrow": "Riyadh Office",
     "institutionName": "EHP Academy",
-    "addressLine1": "Riyadh",
-    "addressLine2": "Saudi Arabia",
+    "addressLine1": "3130 Abdulrazzaq Al Hashimi St, King Salman District",
+    "addressLine2": "Riyadh 12444, Saudi Arabia",
     "directContact": "Direct Contact",
     "enquiries": "Enquiries",
     "telephone": "Telephone",
