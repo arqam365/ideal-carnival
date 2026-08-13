@@ -1,4 +1,12 @@
-import { pgTable, serial, varchar, text, boolean, integer, timestamp, json } from 'drizzle-orm/pg-core'
+import { pgTable, serial, varchar, text, boolean, integer, timestamp, json, primaryKey } from 'drizzle-orm/pg-core'
+
+export const siteConfig = pgTable('site_config', {
+  key: varchar('key', { length: 200 }).notNull(),
+  locale: varchar('locale', { length: 10 }).notNull().default('en'),
+  value: text('value').notNull(),
+  label: varchar('label', { length: 200 }).notNull(),
+  section: varchar('section', { length: 100 }).notNull(),
+}, (t) => [primaryKey({ columns: [t.key, t.locale] })])
 
 export const insights = pgTable('insights', {
   id: serial('id').primaryKey(),
