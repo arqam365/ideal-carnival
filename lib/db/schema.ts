@@ -82,8 +82,25 @@ export const leads = pgTable('leads', {
   message: text('message'),
 })
 
+export const customPages = pgTable('custom_pages', {
+  id: serial('id').primaryKey(),
+  slug: varchar('slug', { length: 200 }).notNull().unique(),
+  titleEn: varchar('title_en', { length: 300 }).notNull(),
+  titleAr: varchar('title_ar', { length: 300 }).notNull().default(''),
+  contentEn: text('content_en').notNull().default(''),
+  contentAr: text('content_ar').notNull().default(''),
+  eyebrowEn: varchar('eyebrow_en', { length: 200 }).notNull().default(''),
+  eyebrowAr: varchar('eyebrow_ar', { length: 200 }).notNull().default(''),
+  showInNav: boolean('show_in_nav').default(false).notNull(),
+  navLabelEn: varchar('nav_label_en', { length: 100 }).notNull().default(''),
+  navLabelAr: varchar('nav_label_ar', { length: 100 }).notNull().default(''),
+  published: boolean('published').default(false).notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+})
+
 export type Insight = typeof insights.$inferSelect
 export type Faculty = typeof faculty.$inferSelect
 export type CaseStudy = typeof caseStudies.$inferSelect
 export type Program = typeof programs.$inferSelect
 export type Lead = typeof leads.$inferSelect
+export type CustomPage = typeof customPages.$inferSelect
