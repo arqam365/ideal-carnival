@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { ReactNode } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 export function Eyebrow({
   children,
@@ -61,7 +63,7 @@ export function SectionHeading({
       {eyebrow ? <Eyebrow light={light}>{eyebrow}</Eyebrow> : null}
       <h2
         className={cn(
-          'mt-5 text-pretty font-heading text-3xl font-medium leading-[1.12] sm:text-4xl lg:text-[2.75rem]',
+          'reveal-words mt-5 text-pretty font-heading text-3xl font-medium leading-[1.12] sm:text-4xl lg:text-[2.75rem]',
           light ? 'text-primary-foreground' : 'text-primary',
         )}
       >
@@ -103,14 +105,27 @@ export function PageHero({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Entry: image scale + text stagger
       gsap.timeline({ defaults: { ease: 'power3.out' } })
-        .fromTo(imageRef.current, { scale: 1.06 }, { scale: 1, duration: 1.6 })
+        .fromTo(imageRef.current, { scale: 1.06 }, { scale: 1, duration: 1.8 })
         .fromTo(
           [eyebrowRef.current, headingRef.current, bodyRef.current],
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.85, stagger: 0.12 },
-          '-=1.1',
+          { opacity: 0, y: 28 },
+          { opacity: 1, y: 0, duration: 0.9, stagger: 0.13 },
+          '-=1.2',
         )
+
+      // Parallax on scroll
+      gsap.to(imageRef.current, {
+        yPercent: 22,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        },
+      })
     }, sectionRef)
 
     return () => ctx.revert()

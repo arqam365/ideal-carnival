@@ -2,14 +2,16 @@ import createNextIntlPlugin from 'next-intl/plugin'
 
 const withNextIntl = createNextIntlPlugin('./i18n/request.ts')
 
+const isDev = process.env.NODE_ENV === 'development'
+
 const csp = [
   "default-src 'self'",
-  // Next.js hydration + GSAP require unsafe-inline; no eval needed in production
-  "script-src 'self' 'unsafe-inline' va.vercel-scripts.com",
+  // unsafe-eval only in dev — React uses eval() for call-stack reconstruction in dev mode only
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ''} va.vercel-scripts.com`,
   "style-src 'self' 'unsafe-inline' fonts.googleapis.com",
   "font-src 'self' fonts.gstatic.com",
   "img-src 'self' data: blob:",
-  "connect-src 'self' va.vercel-scripts.com vitals.vercel-insights.com",
+  "connect-src 'self' va.vercel-scripts.com vitals.vercel-insights.com api.groq.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

@@ -11,6 +11,7 @@ import { Reveal } from '@/components/reveal-provider'
 import { DirectionSync } from '@/components/direction-sync'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Cursor } from '@/components/cursor'
+import { PageTransition } from '@/components/page-transition'
 import '../globals.css'
 
 const inter = Inter({
@@ -103,6 +104,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <SmoothScroll />
           <Cursor />
+          <PageTransition />
           <DirectionSync />
           <Reveal />
           <SiteHeader />

@@ -30,10 +30,10 @@ export async function ConsultationCTA({
           />
           <div className="grid items-center gap-10 lg:grid-cols-12">
             <div className="lg:col-span-8">
-              <h2 className="text-balance font-heading text-3xl font-medium leading-tight text-primary-foreground sm:text-4xl">
+              <h2 className="reveal-words text-balance font-heading text-3xl font-medium leading-tight text-primary-foreground sm:text-4xl">
                 {displayTitle}
               </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
+              <p className="reveal mt-5 max-w-2xl text-lg leading-relaxed text-primary-foreground/70">
                 {displayBody}
               </p>
             </div>

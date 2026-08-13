@@ -69,7 +69,7 @@ export function ImpactStats() {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="max-w-2xl">
           <Eyebrow light>{t('eyebrow')}</Eyebrow>
-          <h2 className="mt-5 font-heading text-3xl font-medium text-primary-foreground sm:text-4xl">
+          <h2 className="reveal-words mt-5 font-heading text-3xl font-medium text-primary-foreground sm:text-4xl">
             {t('title')}
           </h2>
         </div>

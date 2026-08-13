@@ -27,7 +27,7 @@ export async function HomeIndustries() {
           </Link>
         </div>
 
-        <div className="mt-14 flex flex-wrap gap-3">
+        <div className="reveal-stagger mt-14 flex flex-wrap gap-3">
           {industryItems.map((industry) => (
             <Link
               key={industry.id}

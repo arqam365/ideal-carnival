@@ -184,7 +184,13 @@
       "title": "Founded to address Saudi Arabia's growing demand for excellence",
       "p1": "EHP Academy was conceived in response to Saudi Arabia's growing demand for highly qualified professionals in protocol, executive hospitality, etiquette and premium service. As Saudi Arabia welcomes international delegations and expands its hospitality, tourism and major-events sectors, organisations require professionals who can represent them with confidence, cultural awareness and internationally informed standards of conduct.",
       "p2": "EHP is designed as a centre of excellence, combining academic rigour, practical application and cultural intelligence. Our programmes serve government entities, diplomatic missions, private-sector executives, hospitality organisations and graduates seeking specialist professional qualifications.",
-      "p3": "Aligned with Saudi Vision 2030, EHP aims to develop human capital that meets global standards while honouring Saudi identity, values and professional requirements."
+      "p3": "Aligned with Saudi Vision 2030, EHP aims to develop human capital that meets global standards while honouring Saudi identity, values and professional requirements.",
+      "stats": [
+        { "value": "2026", "label": "Year Established" },
+        { "value": "13+", "label": "Sectors Served" },
+        { "value": "4", "label": "Diploma Programmes" },
+        { "value": "20+", "label": "Years Combined Expertise" }
+      ]
     },
     "vision": {
       "eyebrow": "Vision",
