@@ -8,26 +8,31 @@ export async function POST(req: NextRequest) {
   const { text, fromLocale, toLocale } = await req.json() as { text: string; fromLocale: string; toLocale: string }
   if (!text?.trim()) return NextResponse.json({ translated: '' })
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
     headers: {
-      'x-api-key': process.env.ANTHROPIC_API_KEY!,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
+      'Authorization': `Bearer ${process.env.GROQ_API_KEY}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      model: 'claude-haiku-4-5-20251001',
+      model: 'llama-3.1-8b-instant',
       max_tokens: 2048,
-      messages: [{
-        role: 'user',
-        content: `Translate the following ${LANG[fromLocale]} text to ${LANG[toLocale]}. Return ONLY the translated text with no explanation, no quotes, no prefix:\n\n${text}`,
-      }],
+      messages: [
+        {
+          role: 'system',
+          content: `You are a professional translator specializing in formal business and institutional content. Translate accurately and naturally. Return ONLY the translated text with no explanation, no quotes, no prefix.`,
+        },
+        {
+          role: 'user',
+          content: `Translate the following ${LANG[fromLocale]} text to ${LANG[toLocale]}:\n\n${text}`,
+        },
+      ],
     }),
   })
 
   if (!res.ok) return NextResponse.json({ error: 'Translation failed' }, { status: 502 })
 
   const data = await res.json()
-  const translated: string = data.content?.[0]?.text ?? ''
+  const translated: string = data.choices?.[0]?.message?.content ?? ''
   return NextResponse.json({ translated })
 }
