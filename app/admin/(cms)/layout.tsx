@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { BookOpen } from 'lucide-react'
+import Image from 'next/image'
 import { SidebarNav } from './nav-item'
 import { SignOutButton } from './sign-out-button'
 
@@ -9,8 +9,8 @@ export default function CmsLayout({ children }: { children: ReactNode }) {
       <aside className="flex w-60 shrink-0 flex-col" style={{ backgroundColor: '#1e1b4b' }}>
         <div className="px-6 py-6 border-b border-white/10">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#B8995D] shrink-0">
-              <BookOpen className="h-5 w-5 text-white" />
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#B8995D]/20 shrink-0">
+              <Image src="/images/ehp-icon.png" alt="EHP" width={28} height={28} className="object-contain" />
             </div>
             <div>
               <p className="text-sm font-bold text-white leading-tight">EHP Academy</p>

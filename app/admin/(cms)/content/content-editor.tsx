@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { Check, Loader2, Globe, Languages } from 'lucide-react'
+import React, { useState, useRef } from 'react'
+import { Check, Loader2, Globe, Languages, ChevronRight, Home, Info, Zap, Building2, GraduationCap, Users, Handshake, Briefcase, Lightbulb, Mail, Bell, FileText } from 'lucide-react'
 import type { SiteConfigRow } from '@/lib/site-config'
 
 const LONG_FIELDS = new Set([
@@ -20,54 +20,121 @@ const LONG_FIELDS = new Set([
   'cta.defaultTitle', 'cta.defaultBody', 'footer.tagline',
 ])
 
+const PAGE_ORDER = [
+  'Home', 'About', 'Solutions', 'Industries', 'Programmes',
+  'Faculty', 'Partnerships', 'Case Studies', 'Insights', 'Contact',
+  'CTA', 'Footer & Contact',
+]
+
+type LucideIcon = React.ComponentType<{ className?: string }>
+const PAGE_ICONS: Record<string, LucideIcon> = {
+  'Home': Home, 'About': Info, 'Solutions': Zap, 'Industries': Building2,
+  'Programmes': GraduationCap, 'Faculty': Users, 'Partnerships': Handshake,
+  'Case Studies': Briefcase, 'Insights': Lightbulb, 'Contact': Mail,
+  'CTA': Bell, 'Footer & Contact': FileText,
+}
+
 export function ContentEditor({ enRows, arRows }: { enRows: SiteConfigRow[]; arRows: SiteConfigRow[] }) {
   const [locale, setLocale] = useState<'en' | 'ar'>('en')
-  const rows = locale === 'en' ? enRows : arRows
-  const sections = Array.from(new Set(rows.map((r) => r.section)))
+  const [activePage, setActivePage] = useState<string | null>(null)
 
-  return (
-    <div className="space-y-8">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-900">Site Content</h1>
-          <p className="mt-1 text-sm text-gray-500">
-            Edit any field and click Save. Use the Translate button to auto-translate to the other language.
-          </p>
-        </div>
-        <div className="flex items-center gap-1 rounded-lg border border-gray-200 bg-white p-1 shadow-sm">
-          <button
-            onClick={() => setLocale('en')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${locale === 'en' ? 'bg-[#B8995D] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
-          >
-            <Globe className="h-3 w-3" /> English
-          </button>
-          <button
-            onClick={() => setLocale('ar')}
-            className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${locale === 'ar' ? 'bg-[#B8995D] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
-          >
-            <Globe className="h-3 w-3" /> Arabic
-          </button>
-        </div>
-      </div>
+  const arByKey = Object.fromEntries(arRows.map((r) => [r.key, r.value]))
+  const rows = locale === 'en'
+    ? enRows
+    : enRows.map((r) => ({ ...r, locale: 'ar', value: arByKey[r.key] ?? '' }))
 
-      {locale === 'ar' && arRows.length === 0 && (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-sm text-amber-800">
-          No Arabic content yet. Use the Translate button on each English field to auto-translate, or type directly in Arabic.
-        </div>
-      )}
+  const allSections = Array.from(new Set(rows.map((r) => r.section)))
+  const sections = PAGE_ORDER.filter((s) => allSections.includes(s))
+  const pageRows = activePage ? rows.filter((r) => r.section === activePage) : []
 
-      {sections.map((section) => (
-        <div key={section} className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-100 bg-gray-50">
-            <h2 className="text-sm font-bold text-gray-900">{section}</h2>
+  if (activePage) {
+    return (
+      <div className="space-y-6">
+        {/* Header */}
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setActivePage(null)}
+              className="text-sm text-gray-400 hover:text-gray-700 transition-colors"
+            >
+              ← Pages
+            </button>
+            <ChevronRight className="h-4 w-4 text-gray-300" />
+            <h1 className="text-xl font-bold text-gray-900">{activePage}</h1>
+            <span className="text-xs text-gray-400 bg-gray-100 rounded px-2 py-0.5">{pageRows.length} fields</span>
           </div>
+          <LocaleSwitcher locale={locale} setLocale={setLocale} />
+        </div>
+
+        {locale === 'ar' && (
+          <div className="rounded-xl border border-amber-100 bg-amber-50 px-4 py-3 text-xs text-amber-700">
+            Arabic tab — empty fields have no translation yet. Use "→ AR" to auto-translate from English.
+          </div>
+        )}
+
+        <div className="rounded-xl border border-gray-200 bg-white shadow-sm overflow-hidden">
           <div className="divide-y divide-gray-100">
-            {rows.filter((r) => r.section === section).map((row) => (
+            {pageRows.map((row) => (
               <FieldRow key={row.key} row={row} locale={locale} />
             ))}
           </div>
         </div>
-      ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">Site Content</h1>
+          <p className="mt-1 text-sm text-gray-500">Select a page to edit its content.</p>
+        </div>
+        <LocaleSwitcher locale={locale} setLocale={setLocale} />
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {sections.map((section) => {
+          const Icon = PAGE_ICONS[section] ?? FileText
+          const count = rows.filter((r) => r.section === section).length
+          const arCount = arRows.filter((r) => rows.find((x) => x.key === r.key && x.section === section)).length
+          return (
+            <button
+              key={section}
+              onClick={() => setActivePage(section)}
+              className="flex flex-col items-start gap-2 rounded-xl border border-gray-200 bg-white p-5 text-left shadow-sm hover:border-[#B8995D] hover:shadow-md transition-all group"
+            >
+              <Icon className="h-5 w-5 text-gray-400 group-hover:text-[#B8995D] transition-colors" />
+              <span className="text-sm font-semibold text-gray-900 group-hover:text-[#B8995D] transition-colors">{section}</span>
+              <span className="text-xs text-gray-400">{count} fields</span>
+              {locale === 'ar' && (
+                <span className={`text-[10px] font-medium ${arCount === count ? 'text-emerald-600' : 'text-amber-500'}`}>
+                  {arCount === count ? '✓ Translated' : `${arCount}/${count} translated`}
+                </span>
+              )}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function LocaleSwitcher({ locale, setLocale }: { locale: string; setLocale: (l: 'en' | 'ar') => void }) {
+  return (
+    <div className="flex items-center gap-1 rounded-lg border border-gray-200 bg-white p-1 shadow-sm shrink-0">
+      <button
+        onClick={() => setLocale('en')}
+        className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${locale === 'en' ? 'bg-[#B8995D] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+      >
+        <Globe className="h-3 w-3" /> English
+      </button>
+      <button
+        onClick={() => setLocale('ar')}
+        className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${locale === 'ar' ? 'bg-[#B8995D] text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+      >
+        <Globe className="h-3 w-3" /> Arabic
+      </button>
     </div>
   )
 }
@@ -108,7 +175,6 @@ function FieldRow({ row, locale }: { row: SiteConfigRow; locale: string }) {
       })
       if (!res.ok) throw new Error()
       const { translated } = await res.json()
-      // Save translated value directly to the other locale
       await fetch('/api/admin/site-config', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
@@ -126,9 +192,7 @@ function FieldRow({ row, locale }: { row: SiteConfigRow; locale: string }) {
   return (
     <div className={`px-6 py-5 ${locale === 'ar' ? 'text-right' : ''}`}>
       <div className="flex items-start justify-between gap-4 mb-2">
-        <label className="text-xs font-semibold uppercase tracking-wider text-gray-500">
-          {row.label}
-        </label>
+        <label className="text-xs font-semibold uppercase tracking-wider text-gray-500">{row.label}</label>
         <span className="text-[10px] font-mono text-gray-300 shrink-0">{row.key}</span>
       </div>
 
