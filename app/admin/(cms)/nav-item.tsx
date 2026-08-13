@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { LayoutDashboard, Lightbulb, Users, GraduationCap, Briefcase } from 'lucide-react'
+import { LayoutDashboard, Lightbulb, Users, GraduationCap, Briefcase, BookOpen } from 'lucide-react'
 
 const NAV = [
   { label: 'Dashboard', href: '/admin', Icon: LayoutDashboard },
@@ -10,6 +10,7 @@ const NAV = [
   { label: 'Faculty', href: '/admin/faculty', Icon: Users },
   { label: 'Programs', href: '/admin/programs', Icon: GraduationCap },
   { label: 'Case Studies', href: '/admin/case-studies', Icon: Briefcase },
+  { label: 'Guide', href: '/admin/guide', Icon: BookOpen },
 ]
 
 export function SidebarNav() {

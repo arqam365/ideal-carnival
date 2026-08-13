@@ -88,12 +88,13 @@ export default function InsightForm({ item }: { item: Insight | null }) {
 
             <div>
               <label className={lbl}>Category</label>
-              <select name="category" defaultValue={item?.category ?? 'Perspectives'} required className={inp}>
-                <option>Perspectives</option>
-                <option>Analysis</option>
-                <option>Protocol Guide</option>
-                <option>Research</option>
-                <option>Industry Spotlight</option>
+              <select name="category" defaultValue={item?.category ?? 'Diplomatic Protocol'} required className={inp}>
+                <option>Diplomatic Protocol</option>
+                <option>Government Excellence</option>
+                <option>Executive Presence</option>
+                <option>Military Protocol</option>
+                <option>Hospitality Excellence</option>
+                <option>VIP Relations</option>
               </select>
             </div>
 
