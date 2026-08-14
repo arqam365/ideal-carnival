@@ -14,11 +14,7 @@ export async function HomeSolutions() {
     <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <div className="reveal flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
-          <SectionHeading
-            eyebrow={t('eyebrow')}
-            title={t('title')}
-            intro={t('intro')}
-          />
+          <SectionHeading eyebrow={t('eyebrow')} title={t('title')} intro={t('intro')} />
           <Link
             href="/solutions"
             className="inline-flex shrink-0 items-center gap-2 text-[0.78rem] font-semibold uppercase tracking-luxury text-primary transition-colors hover:text-gold"
@@ -27,31 +23,35 @@ export async function HomeSolutions() {
           </Link>
         </div>
 
-        <div className="mt-16 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 border-t border-border">
           {solutionItems.map((solution, i) => (
             <Link
               key={solution.id}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               href={`/solutions#${solution.id}` as any}
-              className="reveal group flex min-h-[14rem] flex-col justify-between bg-card p-8 transition-colors hover:bg-primary"
-              style={{ transitionDelay: `${(i % 3) * 60}ms` }}
+              className="reveal group flex items-start gap-6 border-b border-border py-8 transition-colors hover:border-gold/40 lg:items-center lg:gap-12 lg:py-10"
+              style={{ transitionDelay: `${i * 40}ms` }}
             >
-              <span className="font-mono text-xs text-gold">{String(i + 1).padStart(2, '0')}</span>
-              <div>
-                <h3 className="font-heading text-2xl font-medium text-primary transition-colors group-hover:text-primary-foreground">
+              <span className="w-10 shrink-0 font-mono text-xs text-gold/60 transition-colors group-hover:text-gold lg:w-14">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div className="flex flex-1 flex-col gap-2 lg:flex-row lg:items-center lg:gap-12">
+                <h3 className="font-heading text-xl font-medium text-primary transition-colors group-hover:text-gold lg:w-72 lg:shrink-0 lg:text-2xl">
                   {solution.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-primary-foreground/70 line-clamp-3">
+                <p className="text-sm leading-relaxed text-muted-foreground lg:flex-1">
                   {solution.summary}
                 </p>
               </div>
+              <ArrowUpRight className="size-4 shrink-0 text-muted-foreground/40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gold rtl:rotate-180" />
             </Link>
           ))}
-          <div className="flex min-h-[14rem] flex-col justify-center gap-4 bg-primary p-8">
-            <p className="font-heading text-xl text-primary-foreground">{t('designedFor')}</p>
+
+          <div className="reveal flex flex-col gap-3 border-b border-border py-8 lg:flex-row lg:items-center lg:gap-12 lg:py-10">
+            <span className="w-10 shrink-0 lg:w-14" />
+            <p className="font-heading text-lg text-primary lg:w-72 lg:shrink-0">{t('designedFor')}</p>
             <Link
               href="/contact"
-              className="inline-flex w-fit items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-luxury text-gold hover:text-gold/80"
+              className="inline-flex items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-luxury text-gold hover:text-gold/80"
             >
               {t('startConversation')} <ArrowUpRight className="size-4 rtl:rotate-180" />
             </Link>

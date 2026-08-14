@@ -248,7 +248,7 @@ function ProgramCard({ program }: { program: Program }) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex w-full items-start justify-between gap-4 p-8 text-left"
+        className="flex w-full items-start justify-between gap-4 p-6 text-left sm:p-8"
         aria-expanded={open}
       >
         <div className="flex-1">
@@ -282,7 +282,7 @@ function ProgramCard({ program }: { program: Program }) {
       </button>
 
       {open && (
-        <div className="border-t border-border px-8 pb-8 pt-6">
+        <div className="border-t border-border px-6 pb-6 pt-5 sm:px-8 sm:pb-8 sm:pt-6">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-luxury text-muted-foreground">

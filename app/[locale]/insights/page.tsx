@@ -106,7 +106,7 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
           </div>
           <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((article, i) => (
-              <article key={article.slug} className="reveal flex flex-col bg-card" style={{ transitionDelay: `${(i % 3) * 60}ms` }}>
+              <article key={article.slug} className="reveal flex flex-col bg-card" style={{ transitionDelay: `${(i % 3) * 30}ms` }}>
                 <div className="relative aspect-[16/9] overflow-hidden bg-accent">
                   <Image
                     src={categoryImages[article.category] ?? '/images/about-leadership.png'}
@@ -155,7 +155,7 @@ export default async function InsightsPage({ params }: { params: Promise<{ local
 
       <section className="bg-background py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="reveal relative isolate overflow-hidden border border-sand bg-accent px-8 py-14 lg:px-16 lg:py-16">
+          <div className="reveal relative isolate overflow-hidden border border-sand bg-accent px-5 py-12 sm:px-8 sm:py-14 lg:px-16 lg:py-16">
             <div className="grid items-center gap-8 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <Eyebrow>{t('briefingEyebrow')}</Eyebrow>

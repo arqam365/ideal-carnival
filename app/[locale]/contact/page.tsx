@@ -38,7 +38,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             {enquiryTypes.map((type, i) => {
               const Icon = icons[i]
               return (
-                <div key={type.label} className="reveal flex flex-col gap-5 bg-card p-8" style={{ transitionDelay: `${i * 60}ms` }}>
+                <div key={type.label} className="reveal flex flex-col gap-5 bg-card p-8" style={{ transitionDelay: `${i * 30}ms` }}>
                   <div className="flex items-center justify-between">
                     <Icon className="size-5 text-gold" strokeWidth={1.5} />
                     <span className="font-mono text-xs text-muted-foreground/50">{String(i + 1).padStart(2, '0')}</span>

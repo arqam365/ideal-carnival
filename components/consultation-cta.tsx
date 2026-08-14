@@ -19,7 +19,7 @@ export async function ConsultationCTA({
   return (
     <section className="bg-background py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="relative isolate overflow-hidden border border-gold/30 bg-primary px-8 py-16 lg:px-16 lg:py-20">
+        <div className="relative isolate overflow-hidden border border-gold/30 bg-primary px-5 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
           <Image
             src="/images/training-classroom.jpg"
             alt=""

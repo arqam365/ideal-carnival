@@ -77,6 +77,8 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: 'liga' 1, 'kern' 1;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   html {
     @apply font-sans;
@@ -152,7 +154,7 @@
   /* ── Hover transitions — all interactive elements ──────────────────────── */
   a, button {
     transition-property: color, background-color, border-color, opacity, transform, box-shadow;
-    transition-duration: 300ms;
+    transition-duration: 180ms;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   }
 }

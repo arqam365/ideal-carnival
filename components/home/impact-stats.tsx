@@ -73,7 +73,7 @@ export function ImpactStats() {
             {t('title')}
           </h2>
         </div>
-        <div className="mt-14 grid grid-cols-2 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-y-12 lg:grid-cols-4">
           {stats.map((stat) => (
             <StatItem key={stat.label} stat={stat} run={run} />
           ))}

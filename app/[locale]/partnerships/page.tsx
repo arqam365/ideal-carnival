@@ -58,7 +58,7 @@ export default async function PartnershipsPage({ params }: { params: Promise<{ l
           </div>
           <div className="grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
             {partnerProfiles.map((profile, i) => (
-              <div key={profile.number} className="reveal flex flex-col bg-card p-8 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={profile.number} className="reveal flex flex-col bg-card p-8 lg:p-10" style={{ transitionDelay: `${i * 30}ms` }}>
                 <span className="font-mono text-xs text-gold">{profile.number}</span>
                 <h3 className="mt-4 font-heading text-xl font-medium text-primary">{profile.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{profile.body}</p>
@@ -75,7 +75,7 @@ export default async function PartnershipsPage({ params }: { params: Promise<{ l
           </div>
           <div className="grid gap-px overflow-hidden border border-gold/20 bg-gold/20 sm:grid-cols-2">
             {whatWeOffer.map((item, i) => (
-              <div key={item.title} className="reveal bg-primary p-8 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={item.title} className="reveal bg-primary p-8 lg:p-10" style={{ transitionDelay: `${i * 30}ms` }}>
                 <h3 className="font-heading text-2xl font-medium text-primary-foreground">{item.title}</h3>
                 <p className="mt-4 text-base leading-relaxed text-primary-foreground/70">{item.body}</p>
               </div>
@@ -86,7 +86,7 @@ export default async function PartnershipsPage({ params }: { params: Promise<{ l
 
       <section className="bg-background py-24 lg:py-28">
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="relative isolate overflow-hidden border border-sand bg-accent px-8 py-16 lg:px-16 lg:py-20">
+          <div className="relative isolate overflow-hidden border border-sand bg-accent px-5 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20">
             <div className="grid items-center gap-10 lg:grid-cols-12">
               <div className="reveal lg:col-span-8">
                 <Eyebrow>{t('inquiryEyebrow')}</Eyebrow>

@@ -95,7 +95,7 @@ export function ProgramInquiryForm() {
                   type="submit"
                   disabled={state === 'submitting'}
                   className={cn(
-                    'group inline-flex items-center gap-2 bg-primary px-8 py-4 text-[0.78rem] font-semibold uppercase tracking-luxury text-primary-foreground transition-colors',
+                    'group inline-flex w-full items-center justify-center gap-2 bg-primary px-8 py-4 text-[0.78rem] font-semibold uppercase tracking-luxury text-primary-foreground transition-colors sm:w-auto sm:justify-start',
                     state === 'submitting' ? 'cursor-wait opacity-70' : 'hover:bg-gold hover:text-gold-foreground',
                   )}
                 >

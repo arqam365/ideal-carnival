@@ -50,9 +50,9 @@ export function IndustryExplorer({
       </div>
 
       <div className="lg:col-span-8">
-        <div className="border border-border bg-card p-8 lg:p-12">
+        <div className="border border-border bg-card p-6 sm:p-8 lg:p-12">
           <h3 className="font-heading text-3xl font-medium text-primary">{current.label}</h3>
-          <div className="mt-8 grid gap-8 sm:grid-cols-3">
+          <div className="mt-8 grid gap-8 lg:grid-cols-3">
             <Block label={labels.challenge} body={current.challenge} />
             <Block label={labels.solution} body={current.solution} />
             <Block label={labels.outcome} body={current.outcome} accent />

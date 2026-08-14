@@ -49,7 +49,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       />
       <HomeHero />
       <Reveal><TrustBar /></Reveal>
-      <Reveal><PartnersStrip /></Reveal>
+      {/* <Reveal><PartnersStrip /></Reveal> */}
       <Reveal><HomeSolutions /></Reveal>
       <Reveal><ProtocolInPractice /></Reveal>
       <Reveal><ExcellenceFramework /></Reveal>

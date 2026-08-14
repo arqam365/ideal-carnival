@@ -45,9 +45,9 @@ export function Reveal() {
             once: true,
             onEnter: () => gsap.to(words, {
               yPercent: 0,
-              duration: 0.85,
-              stagger: 0.055,
-              ease: 'power4.out',
+              duration: 0.55,
+              stagger: 0.035,
+              ease: 'power3.out',
               delay: staggerDelay,
             }),
           })
@@ -56,7 +56,7 @@ export function Reveal() {
         // ── 2. Simple fade + rise ('.reveal') ────────────────────────────
         document.querySelectorAll<HTMLElement>('.reveal:not(.is-visible)').forEach((el) => {
           const cssDelay = parseFloat(el.style.transitionDelay || '0') / 1000
-          gsap.set(el, { opacity: 0, y: 28, willChange: 'opacity, transform' })
+          gsap.set(el, { opacity: 0, y: 16, willChange: 'opacity, transform' })
 
           ScrollTrigger.create({
             trigger: el,
@@ -64,8 +64,8 @@ export function Reveal() {
             once: true,
             onEnter: () => gsap.to(el, {
               opacity: 1, y: 0,
-              duration: 1.0, delay: cssDelay,
-              ease: 'power3.out',
+              duration: 0.5, delay: cssDelay,
+              ease: 'power2.out',
               clearProps: 'willChange',
               onComplete: () => el.classList.add('is-visible'),
             }),
@@ -108,16 +108,16 @@ export function Reveal() {
         document.querySelectorAll<HTMLElement>('.reveal-stagger:not(.rv-st-done)').forEach((el) => {
           el.classList.add('rv-st-done')
           const children = Array.from(el.children) as HTMLElement[]
-          gsap.set(children, { opacity: 0, y: 24 })
+          gsap.set(children, { opacity: 0, y: 16 })
           ScrollTrigger.create({
             trigger: el,
             start: 'top 85%',
             once: true,
             onEnter: () => gsap.to(children, {
               opacity: 1, y: 0,
-              duration: 0.85,
-              stagger: 0.08,
-              ease: 'power3.out',
+              duration: 0.45,
+              stagger: 0.05,
+              ease: 'power2.out',
             }),
           })
         })

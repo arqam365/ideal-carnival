@@ -54,7 +54,7 @@ export function SiteFooter() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 lg:col-span-8">
+          <div className="grid grid-cols-2 gap-8 lg:col-span-8 lg:grid-cols-4">
             <FooterColumn title={t('solutions')} items={solutionItems} />
             <FooterColumn title={t('industries')} items={industryItems} />
             <FooterColumn title={t('institution')} items={company} />

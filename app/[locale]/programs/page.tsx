@@ -68,7 +68,7 @@ export default async function ProgramsPage({ params }: { params: Promise<{ local
           </div>
           <div className="grid gap-px overflow-hidden border border-border bg-border grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             {modes.map((item, i) => (
-              <div key={item.mode} className="reveal flex flex-col bg-background" style={{ transitionDelay: `${i * 60}ms` }}>
+              <div key={item.mode} className="reveal flex flex-col bg-background" style={{ transitionDelay: `${i * 30}ms` }}>
                 <div className="relative aspect-[16/9] overflow-hidden bg-accent">
                   <Image src={modeImages[i]} alt={item.mode} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover opacity-70" />
                 </div>

@@ -64,10 +64,10 @@ export default async function FacultyPage({ params }: { params: Promise<{ locale
           </div>
           <div className="space-y-px overflow-hidden border border-border">
             {members.map((member, i) => (
-              <article key={member.name} className="reveal grid gap-8 bg-card p-8 lg:grid-cols-12 lg:gap-12 lg:p-10" style={{ transitionDelay: `${i * 60}ms` }}>
+              <article key={member.name} className="reveal grid gap-8 bg-card p-6 sm:p-8 lg:grid-cols-12 lg:gap-12 lg:p-10" style={{ transitionDelay: `${i * 30}ms` }}>
                 <div className="lg:col-span-4">
-                  <div className="mb-6 aspect-square overflow-hidden bg-accent">
-                    <Image src={facultyImages[i]} alt={member.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center grayscale" />
+                  <div className="relative mb-6 aspect-[3/4] overflow-hidden bg-accent">
+                    <Image src={facultyImages[i]} alt={member.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-top grayscale" />
                   </div>
                   <div className="mb-4 h-px w-10 bg-gold" aria-hidden="true" />
                   <h3 className="font-heading text-2xl font-medium text-primary">{member.name}</h3>

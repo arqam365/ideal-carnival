@@ -41,7 +41,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
             <p>{t('story.p1')}</p>
             <p>{t('story.p2')}</p>
             <p>{t('story.p3')}</p>
-            <div className="grid grid-cols-2 gap-px overflow-hidden border border-border bg-border sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-px overflow-hidden border border-border bg-border lg:grid-cols-4">
               {stats.map((stat) => (
                 <div key={stat.label} className="bg-card px-6 py-5">
                   <span className="block font-heading text-3xl font-medium text-primary">{stat.value}</span>
@@ -55,11 +55,11 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
       <section className="bg-primary py-24 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-px overflow-hidden border border-gold/20 bg-gold/20 px-0 lg:grid-cols-2">
-          <div className="bg-primary p-10 lg:p-14">
+          <div className="bg-primary p-8 lg:p-14">
             <Eyebrow light>{t('vision.eyebrow')}</Eyebrow>
             <p className="mt-6 font-heading text-2xl leading-snug text-primary-foreground lg:text-3xl">{t('vision.text')}</p>
           </div>
-          <div className="bg-primary p-10 lg:p-14">
+          <div className="bg-primary p-8 lg:p-14">
             <Eyebrow light>{t('mission.eyebrow')}</Eyebrow>
             <p className="mt-6 font-heading text-2xl leading-snug text-primary-foreground lg:text-3xl">{t('mission.text')}</p>
           </div>

@@ -54,7 +54,7 @@ export function ServiceExcellenceFramework() {
                 <li
                   key={pillar.key}
                   className="reveal relative flex gap-8 pb-10 last:pb-0"
-                  style={{ transitionDelay: `${i * 80}ms` }}
+                  style={{ transitionDelay: `${i * 40}ms` }}
                 >
                   {/* Connector line */}
                   {i < pillars.length - 1 && (

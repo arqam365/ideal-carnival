@@ -71,7 +71,7 @@ function StatItem({ stat, active }: { stat: Stat; active: boolean }) {
   const count = useCountUp(stat.value, 1800, active)
   return (
     <div className="reveal flex flex-col gap-4 border-b border-gold/15 pb-8 last:border-0 last:pb-0 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-8 last:lg:border-r-0 last:lg:pr-0">
-      <span className="font-heading text-5xl font-medium text-primary-foreground lg:text-6xl">
+      <span className="font-heading text-4xl font-medium text-primary-foreground sm:text-5xl lg:text-6xl">
         {count.toLocaleString()}
         {stat.suffix}
       </span>

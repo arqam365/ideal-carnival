@@ -5,7 +5,7 @@ export function HomeCtaBanner() {
   return (
     <section className="bg-background py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="reveal flex flex-col items-center gap-10 border border-border bg-card px-8 py-16 text-center lg:px-16">
+        <div className="reveal flex flex-col items-center gap-10 border border-border bg-card px-5 py-12 text-center sm:px-8 sm:py-16 lg:px-16">
           <span className="inline-flex items-center gap-3 text-[0.72rem] font-semibold uppercase tracking-luxury text-gold">
             <span className="h-px w-8 bg-gold/60" aria-hidden="true" />
             Ready to elevate your institution?

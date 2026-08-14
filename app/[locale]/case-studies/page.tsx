@@ -101,7 +101,7 @@ export default async function CaseStudiesPage({ params }: { params: Promise<{ lo
                 key={cs.id}
                 href={`#${cs.id}`}
                 className="reveal group block overflow-hidden border border-border bg-card transition-colors hover:border-primary"
-                style={{ transitionDelay: `${i * 60}ms` }}
+                style={{ transitionDelay: `${i * 30}ms` }}
               >
                 <div className="grid gap-0 lg:grid-cols-12">
                   <div className="relative hidden overflow-hidden lg:col-span-3 lg:block">

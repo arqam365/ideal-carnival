@@ -36,7 +36,7 @@ export function ProtocolInPractice() {
 
         <div className="mt-14 grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <ol className="grid grid-cols-3 lg:flex lg:flex-col lg:gap-0">
+            <ol className="grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-col lg:gap-0">
               {stages.map((s, i) => (
                 <li key={s.key}>
                   <button
