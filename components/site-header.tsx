@@ -170,7 +170,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-3 xl:flex">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 border border-gold/60 px-5 py-2 text-[0.7rem] font-semibold uppercase tracking-luxury text-gold/90 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-primary"
+            className="inline-flex items-center gap-2 whitespace-nowrap border border-gold/60 px-5 py-2 text-[0.7rem] font-semibold uppercase tracking-luxury text-gold/90 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-primary"
           >
             {t('requestConsultation')}
           </Link>
