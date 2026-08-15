@@ -130,12 +130,12 @@ export function SiteHeader() {
       onMouseLeave={() => setOpenMenu(null)}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-6 px-6 lg:px-10">
-        <Link href="/" className="relative z-10 flex items-center" aria-label="EHP Academy home">
+        <Link href="/" className="relative z-10 flex shrink-0 items-center" aria-label="EHP Academy home">
           <Wordmark className="text-primary-foreground" />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center lg:flex">
+        <nav className="hidden items-center xl:flex">
           {NAV_KEYS.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
             return (
@@ -167,7 +167,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Link
             href="/contact"
             className="inline-flex items-center gap-2 border border-gold/60 px-5 py-2 text-[0.7rem] font-semibold uppercase tracking-luxury text-gold/90 transition-all duration-300 hover:border-gold hover:bg-gold hover:text-primary"
@@ -187,7 +187,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="relative z-10 inline-flex items-center justify-center p-2 text-primary-foreground lg:hidden"
+            className="relative z-10 inline-flex items-center justify-center p-2 text-primary-foreground xl:hidden"
             aria-label="Open menu"
           >
             <Menu className="size-6" />
@@ -201,7 +201,7 @@ export function SiteHeader() {
           <div
             key={`panel-${item.key}`}
             ref={megaRef}
-            className="absolute inset-x-0 top-full hidden border-t border-gold/20 bg-primary/98 backdrop-blur-md lg:block"
+            className="absolute inset-x-0 top-full hidden border-t border-gold/20 bg-primary/98 backdrop-blur-md xl:block"
             onMouseEnter={() => setOpenMenu(item.key)}
           >
             <div className="mx-auto grid max-w-7xl grid-cols-12 gap-10 px-10 py-10">
@@ -240,7 +240,7 @@ export function SiteHeader() {
       {/* Mobile drawer — GSAP controlled, no CSS transform classes */}
       <div
         ref={drawerRef}
-        className="fixed inset-0 z-50 hidden flex-col bg-primary lg:hidden"
+        className="fixed inset-0 z-50 hidden flex-col bg-primary xl:hidden"
       >
         <div className="flex h-20 shrink-0 items-center justify-between px-6">
           <Wordmark className="text-primary-foreground" />

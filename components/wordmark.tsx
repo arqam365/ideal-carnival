@@ -19,7 +19,7 @@ export function Wordmark({
         aria-hidden="true"
         priority
       />
-      <span className="flex flex-col leading-none">
+      <span className="flex flex-col leading-none whitespace-nowrap">
         <span className="font-heading text-xl font-semibold tracking-wide">
           EHP
           <span className="ml-1.5 text-[color:var(--gold)]">Academy</span>
