@@ -180,7 +180,7 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={switchLocale}
-            className="px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-luxury text-primary-foreground/70 transition-colors hover:text-gold"
+            className="shrink-0 whitespace-nowrap px-3 py-2 text-[0.72rem] font-semibold uppercase tracking-luxury text-primary-foreground/70 transition-colors hover:text-gold"
           >
             {locale === 'en' ? 'AR' : 'EN'}
           </button>
